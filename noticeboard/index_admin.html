@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Notice Board.</title>
+        <link rel="stylesheet" type="text/css" href="style_admin_option.css">
+        
+    </head>
+    <body>
+        <h1>Notice Board</h1> 
+        <div class="corners">
+        <form action="/action_page.php">
+  <label for="fname">First name (Submitted By):</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name (Submitted By):</label>
+  <input type="text" id="lname" name="lname"><br><br>
+   
+             <form action="/action_page.php">
+<label for="notice">Type your notice here:</label>
+<textarea id="notice" name="notice" rows="4" cols="50">
+  
+  </textarea>
+  <br><br>
+
+</form><br>
+
+            
+            <form action="/action_page.php">
+  <label for="img">Select image:</label>
+  <input type="file" id="img" name="img" accept="image/*">
+  
+             
+</form><br><br>
+            <form action="/action_page.php">
+  <label for="myfile">Select files:</label>
+  <input type="file" id="myfile" name="myfile" multiple class="inputfile">
+
+</form><br><br><br>
+              <button class="button" style="vertical-align:middle"><span>Submit  </span></button>
+            
+ 
+</form>
+            </div>
+    </body>        
+ 
