@@ -1,0 +1,133 @@
+#navlist{
+    margin-left: 5px;
+}
+#navbar{
+    padding: 0% 15% 0% 15%;
+    font-size: 20px;
+}
+section{
+    margin-top: -20px;
+    min-height: 70vh;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: crimson;
+  color: white;
+}
+th, td {
+  padding: 30px;
+  text-align: left;
+}
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: url(thumbnail1.jpg);
+    background-size: cover;
+}
+.banner .content{
+    max-width: 900px;
+    text-align: center;
+}
+.banner .content h1 p{
+    font-size: 4em;
+    color: black;
+    margin-top: 30vh;
+    margin-right: 80%;
+}
+footer{
+    width: 100%;
+    background: #222;
+    color: #aaa;
+    margin-bottom: 0px;
+    
+}
+.container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    flex: 1;
+    margin: 15px;
+    margin-left: 5%;
+    min-width: 300px;
+}
+.box h2{   
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-bottom: 2px solid #555;
+    position: relative;
+    margin-bottom: 30px;
+}
+.box h2::before{
+    content: "";
+    width: 100px;
+    height: 100%;
+    border-bottom: 2px solid crimson;
+    position: absolute;
+    margin-top: 2px;
+}
+.box a{
+    color: #aaa;
+    text-decoration: none;
+    display: inline-block;
+}
+.box a i{
+    background: #333;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 5px;
+    transition: 0.5s linear;
+}
+.box a:hover,
+.box a:hover i{
+    color: crimson;
+    border-radius: 50%;
+}
+.social{
+    margin-top: 50px;
+}
+.subcategories a{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+.sublinks a{
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+span{
+    color: crimson;
+}
+.author{
+    width: 100%;
+    background: black;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    overflow: hidden;
+}
