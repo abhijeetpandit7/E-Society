@@ -1,0 +1,91 @@
+<!-- Admin signup form -->
+<%- include('partials/headerForm') %>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-7 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h4 class="card-title text-center">Admin Registration</h4>
+              <form class="form-signin" action="/register" method="POST">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-label-group">
+                      <input name="firstName" type="text" id="inputFirstName" class="form-control" placeholder="First name " required autofocus>
+                      <label for="inputFirstName">First name</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-label-group">
+                      <input name="lastName" type="text" id="inputLastName" class="form-control" placeholder="Last name " required>
+                      <label for="inputLastName">Last name</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-label-group">
+                      <input name="phoneNumber" type="text" id="inputPhoneNumber" class="form-control" placeholder="Phone number" required>
+                      <label for="inputPhoneNumber">Phone number</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-label-group">
+                      <input name="flatNumber" type="text" id="inputFlatNumber" class="form-control" placeholder="Flat number" required>
+                      <label for="inputFlatNumber">Flat number</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-label-group">
+                  <input name="societyName" type="text" id="inputSocietyName" class="form-control" placeholder="Society name " required>
+                  <label for="inputSocietyName">Society name</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="address" type="text" id="inputSocietyAddress" class="form-control" placeholder="Society address " required>
+                  <label for="inputSocietyAddress">Society address</label>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-label-group">
+                      <input name="city" type="text" id="inputCity" class="form-control" placeholder="City" required>
+                      <label for="inputCity">City</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-label-group">
+                      <input name="district" type="text" id="inputDistrict" class="form-control" placeholder="District" required>
+                      <label for="inputDistrict">District</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-label-group">
+                  <input name="postalCode" type="text" id="inputPostcode" class="form-control" placeholder="Postal code" required>
+                  <label for="inputPostcode">Postal code</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="username" type="email" id="email" class="form-control" placeholder="Email" required>
+                  <label for="email">Email</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+                <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="font-size:15px;">
+                  Register
+                </button>
+                <hr class="my-4">
+                <h6 class="card-text text-center">Society already registered? </h6></b>
+                <a href="/login" class="btn  btn-danger btn-block text-uppercase" type="submit" style="font-size:15px;">
+                  Sign-in
+                </a>
+                <a href="/" class="btn  btn-secondary btn-block text-uppercase">Home</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

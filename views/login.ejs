@@ -1,0 +1,33 @@
+<!-- Login page -->
+<%- include('partials/headerForm') %>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">       
+              <h5 class="card-title text-center">Login</h5>
+              <form class="form-signin" action="/login" method="POST">
+                <div class="form-label-group">
+                  <input name="username" type="email" id="email" class="form-control" placeholder="Email" required>
+                  <label for="email">Email</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+                <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="font-size:15px;">Sign in</button>
+                <hr class="my-4">
+                <h6 class="card-text text-center">Don't have an account? </h6></b>
+                <a href="/signup" class="btn  btn-danger btn-block text-uppercase" type="submit" style="font-size:15px;">sign-up</a>
+                <a href="/" class="btn  btn-secondary btn-block text-uppercase">Home</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

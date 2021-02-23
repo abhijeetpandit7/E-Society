@@ -1,0 +1,32 @@
+<!-- Login/Signup unsuccessful -->
+<%- include('partials/headerForm') %>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center" style="font-size: 40px; "><b>Failed</b></h5>
+              <hr class="my-4">
+              <h5 class="card-title text-center" style="font-size: 80px; font-family: sans-serif; margin-top: -10px;"><b>✖</b></h5>
+              <!-- Add href -->
+              <form class="form-signin">
+                <h6 class="card-text text-center">Sorry, either password or society name was incorrect, Please double-check.</h6></b>
+                <br>
+                <a href="/login" class="btn  btn-danger btn-block text-uppercase" type="submit" style="font-size:15px;">try again</a>
+                <hr class="my-4">
+                <h6 class="card-text text-center">Society not registered?</h6></b>
+                <a href="/register" class="btn  btn-success btn-block text-uppercase" type="submit" style="font-size:15px;">
+                  Register society
+                </a>
+                <a href="/" class="btn  btn-secondary btn-block text-uppercase">Home</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

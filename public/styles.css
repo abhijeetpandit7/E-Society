@@ -1,0 +1,136 @@
+#navlist{
+    margin-left: 5px;
+}
+#navbar{
+    padding: 0% 15% 0% 15%;
+    font-size: 20px;
+}
+section{
+    margin-top: -20px;
+    min-height: 70vh;
+}
+.btn{
+    margin: 20px 10px 5px 5px;
+}
+.banner{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: url('images/night.jpg');
+    background-size: cover;
+}
+.banner .content{
+    max-width: 900px;
+    text-align: center;
+}
+.banner .content h1{
+    font-size: 4em;
+    color: white;
+    margin-top: 30%;
+    font-weight: bold;
+}
+.banner .content p{
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+.features{
+    padding-left: 250px;
+}
+.container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    flex: 1;
+    margin: 15px;
+    margin-left: 5%;
+    min-width: 300px;
+}
+.box h2{
+   
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-bottom: 2px solid #555;
+    position: relative;
+    margin-bottom: 30px;
+}
+.box h2::before{
+    content: "";
+    width: 100px;
+    height: 100%;
+    border-bottom: 2px solid crimson;
+    position: absolute;
+    margin-top: 2px;
+}
+.box a{
+    color: #aaa;
+    text-decoration: none;
+    display: inline-block;
+}
+.box a i{
+    background: #333;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 5px;
+    transition: 0.5s linear;
+}
+.box a:hover,
+.box a:hover i{
+    color: crimson;
+    border-radius: 50%;
+}
+.social{
+    margin-top: 50px;
+}
+.subcategories a{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+.sublinks a{
+    display: block;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+.author{
+    width: 100%;
+    background: black;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+@media only screen and (max-width: 600px) {
+    .banner{
+        min-height: 70vh;
+    }
+    .banner .content{
+        font-size: small;
+    }
+    .features{
+        margin-left: -240px;
+    }
+    button{
+        margin-left: 70px;
+    }
+    .w3-container h2{
+        font-size: 20px;     
+    }
+}
+
+span{
+    color: crimson;
+}
+footer{
+    width: 100%;
+    background: #222;
+    color: #aaa;
+    margin-bottom: 0px;   
+}

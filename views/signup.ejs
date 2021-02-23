@@ -1,0 +1,53 @@
+<!-- Member signup form -->
+<%- include('partials/headerForm') %>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center">Sign-up</h5>
+              <form class="form-signin" action="/signup" method="POST">
+                <div class="form-label-group">
+                  <input name="firstName" type="text" id="inputFirstName" class="form-control" placeholder="First name " required autofocus>
+                  <label for="inputFirstName">First name</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="lastName" type="text" id="inputLastName" class="form-control" placeholder="Last name " required >
+                  <label for="inputLastName">Last name</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="phoneNumber" type="text" id="inputPhoneNumber" class="form-control" placeholder="Phone number" required>
+                  <label for="inputPhoneNumber">Phone number</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="societyName" type="text" id="inputSocietyName" class="form-control" placeholder="Society name " required >
+                  <label for="inputSocietyName">Society name</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="flatNumber" type="text" id="inputFlatNumber" class="form-control" placeholder="Flat number" required>
+                  <label for="inputFlatNumber">Flat number</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="username" type="email" id="email" class="form-control" placeholder="Email" required>
+                  <label for="email">Email</label>
+                </div>
+                <div class="form-label-group">
+                  <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+                <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="font-size:15px;">Sign up</button>
+                <hr class="my-4">
+                <h6 class="card-text text-center">Already have an account? </h6></b>
+                <a href="/login" class="btn  btn-danger btn-block text-uppercase" type="submit" style="font-size:15px;">sign-in</a>
+                <a href="/" class="btn  btn-secondary btn-block text-uppercase">Home</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+</html>

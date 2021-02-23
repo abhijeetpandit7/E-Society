@@ -1,0 +1,87 @@
+<!-- Product Overview -->
+<%- include('partials/header') %>
+
+<section class="banner" id="banner">
+  <div class="content">
+    <h1>E-society</h1>
+    <!-- Add proper description -->
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae dolore veniam sint maiores praesentium, porro ab illum aliquam </p>
+    <a class="btn btn-success btn-lg" href="/login" role="button">Login</a>
+    <a class="btn btn-primary btn-lg" href="/signup" role="button">Sign-up</a>
+    <br>
+    <a class="btn btn-info btn-lg" href="/register" role="button">Register Society</a>
+  </div>
+</section>
+<br>
+<!-- Add proper description & update logo -->
+<div class="container" id="deck">
+  <div class="row">
+    <div class="w3-container" style="padding:50px 16px" id="about">
+      <h2 class="w3-center">Our Services</h2>
+      <p class="w3-center w3-large">Key features of our company</p>
+      <div class="w3-row-padding w3-center" style="margin-top:64px">
+        <div class="w3-third">
+          <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+          <p class="w3-large">Members</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+        <div class="w3-third">
+          <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+          <p class="w3-large">Notice</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+        <div class="w3-third">
+          <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+          <p class="w3-large">Bill-generation</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="w3-container" style="padding:0 16px 10px" id="about">
+      <div class="w3-row-padding w3-center" style="margin-top:64px">
+        <div class="w3-third">
+          <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+          <p class="w3-large">Complaint</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+        <div class="w3-third">
+          <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+          <p class="w3-large">Contact</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+        <div class="w3-third">
+          <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+          <p class="w3-large">Design</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Font not uniform, UI improvement, update description -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h1 class="w3-center">Contact</h1>
+  <h2 class="w3-center w3-large">Lets get in touch. Send us a message:</h2>
+  <div style="margin-top:48px">
+    <center><h2><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>Mumbai</h2></center>
+    <center><h2><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +91 682151515</h2></center>
+    <center><h2><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: xyz@mail.com</h2></center>
+    <br>
+    <!-- Add form post href -->
+    <form action="/" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="email" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i>
+          Send Message
+        </button>
+      </p>
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') %>
