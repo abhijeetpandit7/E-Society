@@ -48,14 +48,98 @@ app.get("/home", (req,res) => {
 	}
 });
 
-app.get("/failure", (req,res) => {
-	res.render("failure");
+app.get("/logout", (req,res) => {
+	req.logout();
+	res.redirect("/")
+})
+
+app.get("/loginFailure", (req,res) => {
+	const failureMessage = "Sorry, entered password was incorrect, Please double-check.";
+	const hrefLink = "/login";
+	const secondaryMessage = "Account not created?";
+	const hrefSecondaryLink = "/signup";
+	const secondaryButton = "Create Account";
+	res.render("failure",{
+		message:failureMessage,
+		href:hrefLink,
+		messageSecondary:secondaryMessage,
+		hrefSecondary:hrefSecondaryLink,
+		buttonSecondary:secondaryButton
+	})
 });
+
+app.get("/residents", (req,res) => {
+	if(req.isAuthenticated()){
+		const userSocietyName = req.user.societyName;
+		user_collection.User.find({"societyName":userSocietyName},(err,foundUsers) => {
+			if(!err && foundUsers){
+				res.render("residents", {societyResidents:foundUsers, societyName:userSocietyName});
+			}
+		})
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/bill", (req,res) => {
+	if(req.isAuthenticated()){
+		user_collection.User.findById(req.user.id, (err, foundUser) => {
+			if(!err && foundUser){
+				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
+					const date = new Date();
+					const today = date.toLocaleString().split(',')[0];
+					const month = date.toLocaleString("default", { month: "long" });
+					const year = today.split('/')[2]
+					res.render("bill", {
+						resident:foundUser, 
+						society:foundSociety,
+						monthName: month,
+						date: today,
+						year: year
+					});
+				})
+			}
+		})	
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/complaints",(req,res) => {
+	res.render("complaints");
+})
+
+app.get("/contacts",(req,res) => {
+	if(req.isAuthenticated()){
+		const userSocietyName = req.user.societyName;
+		user_collection.User.findOne({"societyName":userSocietyName, isAdmin: true},(err,foundUser) => {
+			if(!err && foundUser){
+				res.render("contacts", {phone:foundUser.phoneNumber});
+			}
+		})	
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/profile", (req,res) => {
+	if(req.isAuthenticated()){
+		user_collection.User.findById(req.user.id, (err, foundUser) => {
+			if(!err && foundUser){
+				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
+					res.render("profile", {resident:foundUser, society:foundSociety});
+				})
+			}
+		})	
+	} else {
+		res.redirect("/login");
+	}
+})
 
 app.post("/signup", (req,res) => {
 	// Signup only if society is created
-	society_collection.Society.findOne({societyName: req.body.societyName},function(err,result){
-		if(!err && result){
+	society_collection.Society.findOne({societyName: req.body.societyName}, (err,foundSociety) => {
+		if(!err && foundSociety){
 			user_collection.User.register(
 				{
 					username: req.body.username,
@@ -78,56 +162,86 @@ app.post("/signup", (req,res) => {
 			);
 		}
 		else{
-			res.redirect("failure")
+			const failureMessage = "Sorry, society is not registered, Please double-check society name."
+			const hrefLink = "/signup"
+			const secondaryMessage = "Society not registered?";
+			const hrefSecondaryLink = "/register";
+			const secondaryButton = "Register Society";
+			res.render("failure",{
+				message:failureMessage,
+				href:hrefLink,
+				messageSecondary:secondaryMessage,
+				hrefSecondary:hrefSecondaryLink,
+				buttonSecondary:secondaryButton
+			});
 		}
 	});
 });
 
 app.post("/register", (req,res) => {
-	user_collection.User.register(
-		{
-			isAdmin: true,
-			username: req.body.username,
-			societyName: req.body.societyName,
-			societyAddress: {
-				address: req.body.address,
-				city: req.body.city,
-				district: req.body.district,
-				postalCode: req.body.postalCode
-			},
-			flatNumber: req.body.flatNumber,
-			firstName: req.body.firstName,
-			lastName: req.body.lastName,
-			phoneNumber: req.body.phoneNumber
-		},
-		req.body.password,(err,user) => {
-			if(err){
-				console.log(err);
-				res.redirect("/register");
-			} else {
-				passport.authenticate("local")(req,res,function(){
-					// Create new society in collection
-					const society = new society_collection.Society({
-						societyName: user.societyName,
-						societyAddress: {
-							address: user.societyAddress.address,
-							city: user.societyAddress.city,
-							district: user.societyAddress.district,
-							postalCode: user.societyAddress.postalCode
-						},
-						admin: user.username
-					});
-					society.save();
-					res.redirect("/home");
-				});
-			}
+	// Signup only if society not registered
+	society_collection.Society.findOne({societyName: req.body.societyName},function(err,result){
+		if(!err && !result){
+			user_collection.User.register(
+				{
+					isAdmin: true,
+					username: req.body.username,
+					societyName: req.body.societyName,
+					societyAddress: {
+						address: req.body.address,
+						city: req.body.city,
+						district: req.body.district,
+						postalCode: req.body.postalCode
+					},
+					flatNumber: req.body.flatNumber,
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					phoneNumber: req.body.phoneNumber
+				},
+				req.body.password,(err,user) => {
+					if(err){
+						console.log(err);
+						res.redirect("/register");
+					} else {
+						passport.authenticate("local")(req,res,function(){
+							// Create new society in collection
+							const society = new society_collection.Society({
+								societyName: user.societyName,
+								societyAddress: {
+									address: user.societyAddress.address,
+									city: user.societyAddress.city,
+									district: user.societyAddress.district,
+									postalCode: user.societyAddress.postalCode
+								},
+								admin: user.username
+							});
+							society.save();
+							res.redirect("/home");
+						});
+					}
+				}
+			);
 		}
-	);
+		else{
+			const failureMessage = "Sorry, society is already registered, Please double-check society name.";
+			const hrefLink = "/register";
+			const secondaryMessage = "Account not created?";
+			const hrefSecondaryLink = "/signup";
+			const secondaryButton = "Create Account";
+			res.render("failure",{
+				message:failureMessage,
+				href:hrefLink,
+				messageSecondary:secondaryMessage,
+				hrefSecondary:hrefSecondaryLink,
+				buttonSecondary:secondaryButton
+			});
+		}
+	});
 });
 
 app.post("/login", passport.authenticate("local", {
 	successRedirect: "/home",
-	failureRedirect: "/failure"
+	failureRedirect: "/loginFailure"
 }));
 
 app.listen(

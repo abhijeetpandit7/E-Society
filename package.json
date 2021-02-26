@@ -17,16 +17,17 @@
   },
   "homepage": "https://github.com/abhijeetpandit7/E-Society#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "html-pdf": "^2.2.0",
     "lodash": "^4.17.20",
     "mongoose": "^5.11.17",
-    "mongoose-findorcreate": "^3.0.0",
     "passport": "^0.4.1",
-    "passport-local-mongoose": "^6.1.0"
+    "passport-local-mongoose": "^6.1.0",
+    "phantom-html-to-pdf": "^0.6.1",
+    "phantomjs-prebuilt": "^2.1.16"
   }
 }

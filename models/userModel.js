@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema ({
 			type: Number
 		}
 	},
-	notice: Array
+	complaints: Array
 });
 
 userSchema.plugin(passportLocalMongoose);

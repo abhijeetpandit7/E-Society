@@ -1,3 +1,6 @@
+body {
+    background: #f4f9f9;
+}
 #navlist{
     margin-left: 5px;
 }
@@ -37,7 +40,9 @@ section{
     font-size: large;
 }
 .features{
-    padding-left: 250px;
+    padding-left: 150px;
+    padding-right: 50px;
+    margin-right: 50px;
 }
 .container{
     width: 100%;
@@ -51,7 +56,6 @@ section{
     min-width: 300px;
 }
 .box h2{
-   
     text-transform: uppercase;
     letter-spacing: 3px;
     border-bottom: 2px solid #555;
@@ -115,7 +119,10 @@ section{
         font-size: small;
     }
     .features{
-        margin-left: -240px;
+        margin-right: 5px;
+        margin-left: -1px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     button{
         margin-left: 70px;
@@ -133,4 +140,109 @@ footer{
     background: #222;
     color: #aaa;
     margin-bottom: 0px;   
+}
+
+/* Residents Page */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    flex-direction: row;
+    background-color: rgb(233, 233, 233);
+    border-radius: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.flex-container>div {
+    border-radius: 3rem;
+    background-color: #f1f1f1;
+    width: 300px;
+    align-items: center;
+    margin: 25px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 20px;
+}
+.list-group {
+    width: 300px;
+}
+.list-group-item {
+    font-size: 20px;
+}
+.zoom {
+    transition: transform .2s;
+}
+.zoom:hover {
+    transform: scale(1.10);
+}
+.flat-number {
+    background-color: #d9534f;
+    color: #f1f1f1;
+}
+.flat-owner {
+    line-height: 35px;
+}
+.card-profile {
+    margin-top: 50px;
+    border: 0;
+    border-radius: 1rem;
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-profile {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10% 10%;
+}
+.profile-text {
+    border: black;
+    padding: 2px;
+    width: auto;
+    color: #d9534f;
+}
+
+/* Bill page */
+.bill-content, .bill-header, .bill-details {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+.bill-content td, .bill-content th {
+    padding: 30px;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+.bill-content th, tfoot td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: crimson;
+    color: white;
+}
+tfoot td {
+    opacity: 0.8;
+    font-weight: bold;
+}
+.bill-content tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+.bill-content tr:hover {
+    background-color: #ddd;
+}
+.bill-header {
+    font-size: 20px;
+}
+.bill-details td {
+    /* border: 1px solid #fff; */
+    padding: 8px;
+    text-align: left;
 }
