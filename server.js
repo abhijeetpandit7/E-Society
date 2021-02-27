@@ -105,8 +105,8 @@ app.get("/bill", (req,res) => {
 	}
 })
 
-app.get("/complaints",(req,res) => {
-	res.render("complaints");
+app.get("/helpdesk",(req,res) => {
+	res.render("helpdesk");
 })
 
 app.get("/contacts",(req,res) => {
