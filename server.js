@@ -151,8 +151,18 @@ app.post("/signup", (req,res) => {
 				},
 				req.body.password,function(err,user){
 					if(err){
-						console.log(err);
-						res.redirect("/signup");
+						const failureMessage = "Sorry, this email address is not available. Please choose a different address.";
+						const hrefLink = "/signup";
+						const secondaryMessage = "Society not registered?";
+						const hrefSecondaryLink = "/register";
+						const secondaryButton = "Register Society";
+						res.render("failure",{
+							message:failureMessage,
+							href:hrefLink,
+							messageSecondary:secondaryMessage,
+							hrefSecondary:hrefSecondaryLink,
+							buttonSecondary:secondaryButton
+						});
 					} else {
 						passport.authenticate("local")(req,res,function(){
 							res.redirect("/home");
