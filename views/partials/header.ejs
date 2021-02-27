@@ -5,7 +5,9 @@
 <head>
   <title>E-society</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Simplify everyday living for your housing society!">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="styles.css">
@@ -16,22 +18,24 @@
 
 <body>
   <nav class="navbar navbar-inverse">
-    <div class="container" id="navbar">
+    <div class="container-fluid" id="navbar">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
         </button>
-        <!-- Font not uniform with nav elements -->
-        <a class="navbar-brand" href="/">E-society</a>
+        <a class="navbar-brand" href="/">
+          <img src="images/diversity.png" alt="E-Society">
+        </a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        <!-- Add href link -->
         <ul class="nav navbar-nav" id="navlist">
           <li><a href="/home">Home</a></li>
-          <li><a href="#">Features</a></li>  
-          <li><a href="#">Contact</a></li>
+          <li><a href="mailto:abhijeetpandit7@gmail.com" target="_blank" >Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>

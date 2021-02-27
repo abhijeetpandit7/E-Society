@@ -28,8 +28,12 @@ const societySchema = mongoose.Schema(
         admin: {
             type: String,
             required: true
-        }
-    }
+        },
+        noticeboard: Array
+    },
+    {
+		timestamps: true,
+	}
 )
 
 exports.Society = mongoose.model("society", societySchema);

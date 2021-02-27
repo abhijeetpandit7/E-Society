@@ -6,7 +6,7 @@ body {
 }
 #navbar{
     padding: 0% 15% 0% 15%;
-    font-size: 20px;
+    font-size: 18px;
 }
 section{
     margin-top: -20px;
@@ -21,24 +21,29 @@ section{
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    background: url('images/night.jpg');
+    background: linear-gradient(rgba(255,255,255,0.1), rgba(5, 5, 5,1)), url('images/night.jpg');
     background-size: cover;
 }
 .banner .content{
-    max-width: 900px;
+    max-width: 80%;
     text-align: center;
 }
 .banner .content h1{
     font-size: 4em;
-    color: white;
-    margin-top: 30%;
+    margin-top: 20%;
     font-weight: bold;
+    color: white;
 }
 .banner .content p{
+    font-weight: 600;
     color: white;
-    font-weight: bold;
-    font-size: large;
 }
+@media (min-width: 500px) {
+    .banner .content{
+        max-width: 60%;
+    }
+}
+
 .features{
     padding-left: 150px;
     padding-right: 50px;
@@ -55,12 +60,16 @@ section{
     margin-left: 5%;
     min-width: 300px;
 }
+.box p {
+    font-size: 14px;
+}
 .box h2{
     text-transform: uppercase;
     letter-spacing: 3px;
     border-bottom: 2px solid #555;
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
 }
 .box h2::before{
     content: "";
@@ -89,17 +98,9 @@ section{
     color: crimson;
     border-radius: 50%;
 }
-.social{
-    margin-top: 50px;
-}
 .subcategories a{
     display: block;
     margin-bottom: 10px;
-    font-size: 1.2em;
-}
-.sublinks a{
-    display: block;
-    margin-bottom: 15px;
     font-size: 1.2em;
 }
 .author{
@@ -111,6 +112,10 @@ section{
     text-transform: uppercase;
     overflow: hidden;
 }
+.w3-third {
+    margin-top: 50px;
+}
+
 @media only screen and (max-width: 600px) {
     .banner{
         min-height: 70vh;
@@ -129,6 +134,9 @@ section{
     }
     .w3-container h2{
         font-size: 20px;     
+    }
+    .footer-head {
+        display: none;
     }
 }
 
@@ -179,9 +187,11 @@ footer{
 .flat-number {
     background-color: #d9534f;
     color: #f1f1f1;
+    font-size: 17px;
 }
 .flat-owner {
-    line-height: 35px;
+    line-height: 30px;
+    font-size: 17px;
 }
 .card-profile {
     margin-top: 50px;
