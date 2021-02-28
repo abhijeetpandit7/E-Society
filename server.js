@@ -82,6 +82,28 @@ app.get("/residents", (req,res) => {
 	}
 })
 
+app.get("/noticeboard", (req,res) => {
+	if(req.isAuthenticated()){
+		society_collection.Society.findOne({societyName: req.user.societyName}, (err,foundSociety) => {
+			if(!err && foundSociety){
+				// Check if no notice is present
+				if(!foundSociety.noticeboard.length){
+					foundSociety.noticeboard = [{
+						'subject': 'Stay tuned for upcoming notifications'
+					}]
+				}
+				res.render("noticeboard", {notices:foundSociety.noticeboard, isAdmin:req.user.isAdmin});
+			}
+		})	
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/notice", (req,res) => {
+	res.render("notice");
+})
+
 app.get("/bill", (req,res) => {
 	if(req.isAuthenticated()){
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
@@ -108,7 +130,6 @@ app.get("/helpdesk",(req,res) => {
 		if(req.user.isAdmin) {
 			user_collection.User.find({"societyName":req.user.societyName}, (err, foundUsers) => {
 				if(!err && foundUsers) {
-					console.log(foundUsers);
 					res.render("helpdeskAdmin", {users:foundUsers});
 				}
 			})
@@ -116,9 +137,7 @@ app.get("/helpdesk",(req,res) => {
 			// Check if no complaint is present
 			if(!req.user.complaints.length){
 				req.user.complaints = [{
-					'date': '',
 					'category': 'You have not raised any complaint',
-					'type': '',
 					'description': 'You can raise complaints and track their resolution by facility manager.'
 				}]
 			}
@@ -176,6 +195,22 @@ app.post("/complaint",(req,res) => {
 			foundUser.complaints.push(complaint);
 			foundUser.save(function() {
 				res.redirect("/helpdesk");
+			})
+		}
+	})
+})
+
+app.post("/notice",(req,res) => {
+	society_collection.Society.findOne({societyName: req.user.societyName}, (err,foundSociety) => {
+		if(!err && foundSociety){
+			notice = {
+				'date': date.dateString,
+				'subject': req.body.subject,
+				'details': req.body.details
+			}
+			foundSociety.noticeboard.push(notice);
+			foundSociety.save(function() {
+				res.redirect("/noticeboard");
 			})
 		}
 	})

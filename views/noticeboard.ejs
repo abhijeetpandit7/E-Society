@@ -1,0 +1,33 @@
+<!-- Noticeboard -->
+<%- include('partials/header') %>
+
+<div class="container container-profile">
+  <div class="row">
+    <% notices.reverse().forEach(function(notice){ %>
+    <div class="col">
+      <div class="card card-profile my-5" style="margin-top: 10px;">
+        <div class="card-body" style="padding:3% 8% 3%;">
+          <div>
+            <i class="fas fa-paperclip"></i></i> <b><%= notice.subject %></b>
+            <p style="padding-left: 20px; color: grey;">
+              <%= notice.date %> - Published by admin
+            </p>
+            <p style="padding-left: 20px"><%= notice.details %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+    <% if(isAdmin){ %>
+    <row>
+      <col-4>
+          <a href="/notice" class="btn btn-primary btn-md text-uppercase center" style="border-radius:3rem; max-width:180px; margin:25px 0 25px">
+            Create Notice
+          </a>
+      </col-4>
+    </row>
+    <% } %>
+  </div>    
+</div>
+
+<%- include('partials/footer') %>

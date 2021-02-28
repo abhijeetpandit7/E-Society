@@ -1,0 +1,27 @@
+<!-- New notice -->
+<%- include('partials/header') %>
+
+<div class="container" style="min-width:80%; margin:auto;">
+  <div class="row col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading text-center">
+        <h4>New Notice</h4>
+      </div>
+      <div class="panel-body">
+        <form action="/notice" method="POST">
+          <div class="form-group">
+            <label for="comment">Subject</label>
+            <input name="subject" class="form-control"  type="text" id="comment" required></input>
+            <br>
+            <label for="comment">Details</label>
+            <textarea name="details" class="form-control"  type="text" rows="7" id="comment" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Notice</button>
+          <a href="/noticeboard" class="btn btn-danger">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
