@@ -7,6 +7,7 @@ const passport = require('passport');
 const user_collection = require("./models/userModel");
 const society_collection = require("./models/societyModel");
 const db = require(__dirname+'/config/db');
+const date = require(__dirname+'/date/date');
 
 // Access environment variables
 dotenv.config();
@@ -86,16 +87,12 @@ app.get("/bill", (req,res) => {
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
 			if(!err && foundUser){
 				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
-					const date = new Date();
-					const today = date.toLocaleString().split(',')[0];
-					const month = date.toLocaleString("default", { month: "long" });
-					const year = today.split('/')[2]
 					res.render("bill", {
 						resident:foundUser, 
 						society:foundSociety,
-						monthName: month,
-						date: today,
-						year: year
+						monthName: date.month,
+						date: date.today,
+						year: date.year
 					});
 				})
 			}
@@ -106,7 +103,38 @@ app.get("/bill", (req,res) => {
 })
 
 app.get("/helpdesk",(req,res) => {
-	res.render("helpdesk");
+	if(req.isAuthenticated()) {
+		// Conditonally render user/admin helpdesk
+		if(req.user.isAdmin) {
+			user_collection.User.find({"societyName":req.user.societyName}, (err, foundUsers) => {
+				if(!err && foundUsers) {
+					console.log(foundUsers);
+					res.render("helpdeskAdmin", {users:foundUsers});
+				}
+			})
+		} else {
+			// Check if no complaint is present
+			if(!req.user.complaints.length){
+				req.user.complaints = [{
+					'date': '',
+					'category': 'You have not raised any complaint',
+					'type': '',
+					'description': 'You can raise complaints and track their resolution by facility manager.'
+				}]
+			}
+			res.render("helpdesk", {complaints:req.user.complaints});
+		}
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/complaint",(req,res) => {
+	if(req.isAuthenticated()){
+		res.render("complaint");
+	} else {
+		res.redirect("/login");
+	}
 })
 
 app.get("/contacts",(req,res) => {
@@ -134,6 +162,23 @@ app.get("/profile", (req,res) => {
 	} else {
 		res.redirect("/login");
 	}
+})
+
+app.post("/complaint",(req,res) => {
+	user_collection.User.findById(req.user.id, (err, foundUser) => {
+		if(!err && foundUser){
+			complaint = {
+				'date': date.dateString,
+				'category': req.body.category,
+				'type': req.body.type,
+				'description': req.body.description
+			}
+			foundUser.complaints.push(complaint);
+			foundUser.save(function() {
+				res.redirect("/helpdesk");
+			})
+		}
+	})
 })
 
 app.post("/signup", (req,res) => {

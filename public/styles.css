@@ -1,5 +1,6 @@
 body {
     background: #f4f9f9;
+    font-family: sans-serif, Helvetica, Arial
 }
 #navlist{
     margin-left: 5px;
@@ -49,7 +50,7 @@ section{
     padding-right: 50px;
     margin-right: 50px;
 }
-.container{
+.home-container{
     width: 100%;
     display: flex;
     flex-wrap: wrap;

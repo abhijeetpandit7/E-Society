@@ -1,45 +1,30 @@
-<!-- New complaint -->
+<!-- View complaint -->
 <%- include('partials/header') %>
 
-<div class="container"> 
-  <div class="row col-md-6 col-md-offset-3">
-    <div class="panel panel-primary">
-      <div class="panel-heading text-center">
-          <h1>COMPLAINT BOX</h1>
-      </div>
-      <div class="panel-body">
-        <form>
-          <div class="form-group">
-            <label for=" name"> Name</label>
-            <input type="text" class="form-control" id="Name"/>
-          </div>    
-          <label>Category</label>
-          <select class="form-control">
-            <option>Select</option>
-            <option>Car Parking</option>
-            <option>Common Area</option>
-            <option>Electrical</option>
-            <option>Payment</option>
-            <option>Plumbing</option>
-            <option>Other</option>
-          </select> 
-          <br>
-          <div class="form-group">
-            <label for="email">Complaint Type</label>
-            <div>
-              <label for="Personal" class="radio-inline"><input type="radio" name="Complaint Type" id="Personal">Personal</label>
-              <label for="Community" class="radio-inline"><input type="radio" name="Complaint Type" id="Community">Community</label>
-            </div>
+<div class="container container-profile">
+  <div class="row">
+    <div class="col">
+      <div class="card card-profile my-5">
+        <div class="card-body" style="padding:8% 8% 3%;">
+          <div>
+          <% complaints.reverse().forEach(function(complaint){ %>
+            <i class="fas fa-plus-circle"></i> <b><%= complaint.category %></b>
+            <p style="padding-left: 20px; color: grey;"><%= complaint.date %> - <%= complaint.type %></p>
+            <p style="padding-left: 20px"><%= complaint.description %></p>
+            <hr class="my-4">
+          <% }) %>
           </div>
-          <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="7" id="comment"></textarea>
-          </div>
-          <input type="submit" class="btn btn-primary">
-        </form>
+        </div>
       </div>
     </div>
-  </div>
+    <row>
+      <col-4>
+          <a href="/complaint" class="btn btn-danger btn-md text-uppercase center" style="border-radius:3rem; max-width:180px; margin:25px 0 25px">
+            Raise Complaint
+          </a>
+      </col-4>
+    </row>
+  </div>    
 </div>
 
 <%- include('partials/footer') %>
