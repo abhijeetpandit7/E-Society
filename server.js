@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const user_collection = require("./models/userModel");
 const society_collection = require("./models/societyModel");
+const visit_collection = require("./models/visitModel");
 const db = require(__dirname+'/config/db');
 const date = require(__dirname+'/date/date');
 
@@ -26,7 +27,20 @@ app.use(passport.session());
 db.connectDB()
 
 app.get("/", (req,res) => {
-	res.render("index");
+	// Track page visits + users & societies registered
+	visit_collection.Visit.findOne((err,pageVisit) => {
+		pageVisit.count += 1;
+		society_collection.Society.find((err,foundSociety) => {
+			const societyCount = foundSociety.length
+			user_collection.User.find((err,foundUser) => {
+				const userCount = foundUser.length
+				pageVisit.save(function() {
+					console.log(pageVisit.count, societyCount, userCount)
+					res.render("index");
+				})
+			})
+		})
+	})	
 });
 
 app.get("/login", (req,res) => {
