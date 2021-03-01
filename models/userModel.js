@@ -28,20 +28,6 @@ const userSchema = new mongoose.Schema ({
 		type: Number,
 		required: true
 	},
-	societyAddress: {
-		address: {
-			type: String
-		},
-		city: {
-			type: String
-		},
-		district: {
-			type: String
-		},
-		postalCode: {
-			type: Number
-		}
-	},
 	complaints: Array
 });
 

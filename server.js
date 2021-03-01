@@ -197,6 +197,20 @@ app.get("/profile", (req,res) => {
 	}
 })
 
+app.get("/editProfile", (req,res) => {
+	if(req.isAuthenticated()){
+		user_collection.User.findById(req.user.id, (err, foundUser) => {
+			if(!err && foundUser){
+				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
+					res.render("editProfile", {resident:foundUser, society:foundSociety});
+				})				
+			}
+		})	
+	} else {
+		res.redirect("/login");
+	}
+})
+
 app.post("/complaint",(req,res) => {
 	user_collection.User.findById(req.user.id, (err, foundUser) => {
 		if(!err && foundUser){
@@ -228,6 +242,44 @@ app.post("/notice",(req,res) => {
 			})
 		}
 	})
+})
+
+app.post("/editProfile",(req,res) => {
+	user_collection.User.updateOne(
+		{_id: req.user.id}, 
+		{ $set: { 
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			phoneNumber: req.body.phoneNumber,
+			flatNumber: req.body.flatNumber
+		}},
+		(err,result) => {
+			if(!err){
+				// Update society data if any ~admin
+				if(req.body.address){
+					society_collection.Society.updateOne(
+						{admin: req.user.username}, 
+						{ $set: { 
+							societyAddress: {
+								address: req.body.address,
+								city: req.body.city,
+								district: req.body.district,
+								postalCode: req.body.postalCode
+							}
+						}},
+						(err,result) => {
+							if(!err){
+								res.redirect("/profile");
+							}
+						}
+					)
+				}
+				else {
+					res.redirect("/profile");
+				}
+			}
+		}
+	)
 })
 
 app.post("/signup", (req,res) => {
@@ -291,12 +343,6 @@ app.post("/register", (req,res) => {
 					isAdmin: true,
 					username: req.body.username,
 					societyName: req.body.societyName,
-					societyAddress: {
-						address: req.body.address,
-						city: req.body.city,
-						district: req.body.district,
-						postalCode: req.body.postalCode
-					},
 					flatNumber: req.body.flatNumber,
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,

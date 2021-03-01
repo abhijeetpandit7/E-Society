@@ -1,0 +1,86 @@
+<!-- Update profile -->
+<%- include('partials/header') %>
+
+<div class="container center">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-10 center" style="max-width: 600px;float: initial;">
+      <div class="card card-profile my-6">
+        <div class="card-body" style="padding:5%; margin:5% 0; padding-top:3%;">
+          <h2 style="background-color:rgb(51, 51, 51); padding:8px; color:white; text-align:center; border-radius:1rem; font-size: 20px;">
+            Edit Profile
+          </h2>
+          <form class="form-edit" action="/editProfile" method="POST">
+            <div class=row style="margin: 1%;">
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4%"> <b> First name :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px;">
+                <input name="firstName" type="text" id="inputFirstName" class="form-control" value="<%= resident.firstName %>" required autofocus>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Last name :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="lastName" type="text" id="inputLastName" class="form-control" value="<%= resident.lastName %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Phone number :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="phoneNumber" type="text" id="inputPhoneNumber" class="form-control" value="<%= resident.phoneNumber %>" required> 
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Flat number :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="flatNumber" type="text" id="inputFlatNumber" class="form-control" value="<%= resident.flatNumber %>"  required>
+              </div>
+              <!-- Doesn't update email & password -->
+              <!-- <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Email :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="email" type="email" id="inputEmail" class="form-control" value="<%= resident.username %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Password :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="Password" type="password" id="inputPassword" class="form-control" value="password" required>
+              </div>
+              <div class="col-sm-12 col-lg-12">
+                <div class="custom-control custom-checkbox" style="margin-top:7px;">
+                  <input type="checkbox" class="custom-control-input" id="check"
+                      onclick="myFunction()">
+                  <label class="custom-control-label" for="check" style="color: gray; ">Show Password</label>
+                </div>
+              </div>
+              <script>
+                function myFunction() {
+                  const x = document.getElementById("inputPassword");
+                  if (x.type === "password") {
+                      x.type = "text";
+                  } else {
+                      x.type = "password";
+                  }
+                }
+              </script> -->
+              <% if(resident.isAdmin){ %>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Society address :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="address" type="text" id="societyAddress" class="form-control" value="<%= society.societyAddress.address %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> City :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="city" type="text" id="city" class="form-control" value="<%= society.societyAddress.city %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> District :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="district" type="text" id="district" class="form-control" value="<%= society.societyAddress.district %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Postal code :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="postalCode" type="text" id="postalCode" class="form-control" value="<%= society.societyAddress.postalCode %>" required>
+              </div>
+              <% } %>
+            </div>
+            <div style=" margin-top: 4%;">
+              <button type="submit" class="btn btn-primary btn-md  float-right" style="margin: 10px;">Save</button>
+              <a href="/profile" class="btn btn-danger btn-md float-right" style="margin: 10px;">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
