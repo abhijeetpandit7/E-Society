@@ -1,82 +1,89 @@
 <!-- Society Bill -->
 <%- include('partials/header') %>
 
-<table class="bill-header">
-  <tr>
-    <td>
-      <p><%= society.societyName %></p>
-      <p><%= society.societyAddress.address %>, <%= society.societyAddress.city %>, 
-        <%= society.societyAddress.district %>-<%= society.societyAddress.postalCode %>
-      </p>
-    </td>
-  </tr>
-</table>
-<table style="border: 1px solid #ddd;" class="bill-details">
-  <tr>
-    <td>Bill No: <b>1310</b></td>
-    <td style="padding-left: 10%;">For: <b><%= monthName %>, <%= year %></b></td>
-    <td style="text-align:center;">Date: <b><%= date %></b></td>
-  </tr>
-  <tr>
-    <td>Name: <b><%= resident.firstName %> <%= resident.lastName %></b></td>
-    <td style="padding-left: 13%;">Flat: <b><%= resident.flatNumber %></b></td>
-    <td></td>
-  </tr>
-</table>
-<table class="bill-content">
-  <tr>
-    <th>Sr. No.</th>
-    <th>Particulars</th>
-    <th>Amount</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>Society Charges</td>
-    <td>186</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Repairs and Maintenance</td>
-    <td>1415</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Sinking Fund</td>
-    <td>240</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Water Charges</td>
-    <td>150</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Insurance Charges</td>
-    <td>30</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Parking Charges</td>
-    <td>150</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>Credit Balance</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>Accumulated Interest</td>
-    <td></td>
-  </tr>
-  <tfoot>
+<div id="print-content">
+  <table class="bill-header">
     <tr>
-      <td></td>
-      <td>Total Amount Due</td>
-      <td>2171</td>
+      <td>
+        <p><%= society.societyName %></p>
+        <p><%= society.societyAddress.address %>, <%= society.societyAddress.city %>, 
+          <%= society.societyAddress.district %>-<%= society.societyAddress.postalCode %>
+        </p>
+      </td>
     </tr>
-  </tfoot>
-</table>
+  </table>
+  <table style="border: 1px solid #ddd;" class="bill-details">
+    <tr>
+      <td>Bill No: <b>1310</b></td>
+      <td style="padding-left: 10%;">For: <b><%= monthName %>, <%= year %></b></td>
+      <td style="text-align:center;">Date: <b><%= date %></b></td>
+    </tr>
+    <tr>
+      <td>Name: <b><%= resident.firstName %> <%= resident.lastName %></b></td>
+      <td style="padding-left: 13%;">Flat: <b><%= resident.flatNumber %></b></td>
+      <td></td>
+    </tr>
+  </table>
+  <table class="bill-content">
+    <tr>
+      <th>Sr. No.</th>
+      <th>Particulars</th>
+      <th>Amount</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Society Charges</td>
+      <td>186</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Repairs and Maintenance</td>
+      <td>1415</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Sinking Fund</td>
+      <td>240</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Water Charges</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Insurance Charges</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Parking Charges</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Credit Balance</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Accumulated Interest</td>
+      <td></td>
+    </tr>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td>Total Amount Due</td>
+        <td>2171</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="container">
+  <div class="col-md-12 text-center">
+    <button class="btn btn-info" id="download-btn">Download Bill</button>
+  </div>
+</div>
 <br>
 
 <%- include('partials/footer') %>

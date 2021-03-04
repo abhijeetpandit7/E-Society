@@ -250,7 +250,7 @@ tfoot td {
     background-color: #ddd;
 }
 .bill-header {
-    font-size: 20px;
+    font-size: 16px;
 }
 .bill-details td {
     /* border: 1px solid #fff; */
@@ -258,13 +258,9 @@ tfoot td {
     text-align: left;
 }
 
-/*for  stats secton */
-
-
 #stats .vertical-heading h2 {
     color: #fff;
 }
-
 .stats-item {
     background: rgba(61, 68, 68, 0.6);
     border-radius: 4px;
@@ -273,7 +269,6 @@ tfoot td {
     -webkit-transition: all 400ms linear;
     transition: all 400ms linear;
 }
-
 .stats-item i {
     font-size: 42px;
     color: #1B98E0;
@@ -281,36 +276,30 @@ tfoot td {
     -webkit-transition: all 400ms linear;
     transition: all 400ms linear;
 }
-
 .stats-item h3 {
     font-size: 32px;
     color: #fff;
     margin: 5px 0 5px 0;
 }
-
 .stats-item p {
     color: #fff;
     margin: 0;
 }
-
 .stats-item:hover {
     background: #1B98E0;
 }
-
 .stats-item:hover i {
     color: #212226;
     -webkit-transform: translateY(-20px);
     transform: translateY(-20px);
 }
-
 .stats-item {
     margin-bottom: 20px;
     padding: 25px 5px;
 }
-
 .stats-item i {
     font-size: 30px;
 }
-
 .stats-item h3 {
     font-size: 24px;
+}
