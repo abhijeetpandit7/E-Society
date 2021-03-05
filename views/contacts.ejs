@@ -2,74 +2,75 @@
 <%- include('partials/header') %>
 
 <div style="padding:4%; padding-top: 0%; font-family:sans-serif; font-size:14px;">
-  <h2 style="background-color:rgb(51, 51, 51); padding:18px;color:white; text-align: center; border-radius: 1rem; font-size: 20px;">
+  <h2 style="background-color:rgb(51, 51, 51); padding:18px;color:white; text-align: center; border-radius: 1rem; font-size: 20px; max-width: 1000px; margin:auto">
       Emergency Contacts
   </h2>
-  <div class="flex-container">
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-user"></i> Administrator</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-wrench"></i> Plumbing Service</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-pills"></i> Medicine Shop</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-ambulance"></i> Ambulance</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-user-md"></i> Doctor</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-fire-alt"></i> Fire Station</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-user-shield"></i> Guard</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul class="list-group zoom">
-          <li class="list-group-item flat-number"><i class="fas fa-shield-alt"></i> Police Station</li>
-          <li class="list-group-item flat-owner">
-            <i class="fas fa-phone-square-alt"></i> <%= phone %>
-          </li>
-        </ul>
-      </div>
+  <% if(isAdmin){ %>
+  <row>
+    <col-4>
+        <a href="/editContacts" class="btn btn-primary btn-md text-uppercase center" style="border-radius:3rem; max-width:150px; display: block; margin: auto; margin-top: 10px;">
+          Edit Contact
+        </a>
+    </col-4>
+  </row>
+  <% } %>
+  <div class="flex-container" style="margin-top: 10px;">
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-wrench"></i> Plumbing Service</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.plumbingService %>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-pills"></i> Medicine Shop</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.medicineShop %>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-ambulance"></i> Ambulance</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.ambulance %>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-user-md"></i> Doctor</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.doctor %>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-fire-alt"></i> Fire Station</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.fireStation %>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-user-shield"></i> Guard</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.guard %>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="list-group zoom">
+        <li class="list-group-item flat-number"><i class="fas fa-shield-alt"></i> Police Station</li>
+        <li class="list-group-item flat-owner">
+          <i class="fas fa-phone-square-alt"></i> <%= contact.policeStation %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
   

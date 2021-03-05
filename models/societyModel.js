@@ -29,7 +29,37 @@ const societySchema = mongoose.Schema(
             type: String,
             required: true
         },
-        noticeboard: Array
+        noticeboard: Array,
+        emergencyContacts: {
+            plumbingService: {
+                type: String,
+                default: 'Not added by admin'
+            },
+            medicineShop: {
+                type: String,
+                default: 'Not added by admin'
+            },
+            ambulance: {
+                type: String,
+                default: 'Not added by admin'
+            },
+            doctor: {
+                type: String,
+                default: 'Not added by admin'
+            },
+            fireStation: {
+                type: String,
+                default: 'Not added by admin'
+            },
+            guard: {
+                type: String,
+                default: 'Not added by admin'
+            },
+            policeStation: {
+                type: String,
+                default: 'Not added by admin'
+            }
+        }
     },
     {
 		timestamps: true,

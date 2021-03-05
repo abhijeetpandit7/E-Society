@@ -175,9 +175,21 @@ app.get("/complaint",(req,res) => {
 app.get("/contacts",(req,res) => {
 	if(req.isAuthenticated()){
 		const userSocietyName = req.user.societyName;
-		user_collection.User.findOne({"societyName":userSocietyName, isAdmin: true},(err,foundUser) => {
-			if(!err && foundUser){
-				res.render("contacts", {phone:foundUser.phoneNumber});
+		society_collection.Society.findOne({"societyName":userSocietyName},(err,foundSociety) => {
+			if(!err && foundSociety){
+				res.render("contacts", {contact:foundSociety.emergencyContacts, isAdmin: req.user.isAdmin});
+			}
+		})	
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/editContacts",(req,res) => {
+	if(req.isAuthenticated() && req.user.isAdmin){
+		society_collection.Society.findOne({societyName: req.user.societyName}, (err, foundSociety) => {
+			if(!err && foundSociety){
+				res.render("editContacts", {contact:foundSociety.emergencyContacts});
 			}
 		})	
 	} else {
@@ -244,6 +256,28 @@ app.post("/notice",(req,res) => {
 			})
 		}
 	})
+})
+
+app.post("/editContacts",(req,res) => {
+	society_collection.Society.updateOne(
+		{societyName: req.user.societyName}, 
+		{ $set: {
+			emergencyContacts: {
+				plumbingService: req.body.plumbingService,
+				medicineShop: req.body.medicineShop,
+				ambulance: req.body.ambulance,
+				doctor: req.body.doctor,
+				fireStation: req.body.fireStation,
+				guard: req.body.guard,
+				policeStation: req.body.policeStation
+			}
+		}},
+		(err,result) => {
+			if(!err){
+				res.redirect("/contacts");
+			}
+		}
+	)
 })
 
 app.post("/editProfile",(req,res) => {
@@ -360,10 +394,10 @@ app.post("/register", (req,res) => {
 							const society = new society_collection.Society({
 								societyName: user.societyName,
 								societyAddress: {
-									address: user.societyAddress.address,
-									city: user.societyAddress.city,
-									district: user.societyAddress.district,
-									postalCode: user.societyAddress.postalCode
+									address: req.body.address,
+									city: req.body.city,
+									district: req.body.district,
+									postalCode: req.body.postalCode
 								},
 								admin: user.username
 							});
