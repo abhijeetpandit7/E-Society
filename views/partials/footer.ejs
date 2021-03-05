@@ -25,7 +25,15 @@
       </a>
     </div>
   </footer>
-
+  
+  <script type="text/javascript">
+    $(document).ready(function () {
+      let url = window.location;
+      $('ul.nav a').filter(function() {
+        return this.href == url;
+      }).parent().addClass('active');
+    });
+  </script> 
 </body>
 
 </html>  
