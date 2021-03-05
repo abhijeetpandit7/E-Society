@@ -1,6 +1,13 @@
 <!-- Personal + Society information -->
 <%- include('partials/header') %>
 
+<row>
+  <col-4>
+      <a href="/editProfile" class="btn btn-danger btn-md text-uppercase center" style="border-radius:3rem; max-width:150px; display: block; margin: auto">
+        Edit Profile
+      </a>
+  </col-4>
+</row>
 <div class="container container-profile">
   <div class="row">
     <div class="col">
@@ -11,7 +18,7 @@
           <div style="padding-left:25px; font-style:bold; color:rgb(139, 139, 139);">
               <b>Personal Information</b>
           </div>
-          <div style="padding: 15px;font-size: 16px; font-family: sans-serif; padding-left: 0%">
+          <div style="padding: 15px;font-size: 15px; font-family: sans-serif; padding-left: 0%">
             <div class=row style="margin: 13px; margin-bottom:0px;margin-top:0px">
               <div class="col-sm-6 col-lg-4"> Name :</div>
               <div class="col-sm-6 col-lg-8">
@@ -40,7 +47,7 @@
           <div style="padding-left:25px; padding-top:10px; font-style:bold; color:rgb(139, 139, 139);">
             <b>Society Information</b>
           </div>
-          <div style="padding-top: 15px;font-size: 16px; font-family: sans-serif; padding-left: 0%;  ">
+          <div style="padding-top: 15px;font-size: 15px; font-family: sans-serif; padding-left: 0%;  ">
             <div class=row style="margin: 13px; margin-bottom:0px;margin-top:0px;">
               <div class="col-sm-6 col-lg-4"> Society Name :</div>
               <div class="col-sm-6 col-lg-8"><span class="profile-text"><%= society.societyName %></span></div>
@@ -67,14 +74,6 @@
                 <div class="col-sm-6 col-lg-4"> Postal Code :</div>
                 <div class="col-sm-6 col-lg-8"><span class="profile-text"><%= society.societyAddress.postalCode %></span></div>
             </div>
-            <br>
-            <row>
-              <col-4>
-                  <a href="/editProfile" class="btn btn-danger btn-md text-uppercase center" style="border-radius:3rem; max-width:150px; margin:0 0 0 25px">
-                    Edit Profile
-                  </a>
-              </col-4>
-            </row>
           </div>
         </div>
       </div>

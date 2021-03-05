@@ -162,22 +162,24 @@ footer{
     background-color: rgb(233, 233, 233);
     border-radius: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-width:1000px;
+    margin: auto;
 }
 .flex-container>div {
-    border-radius: 3rem;
+    border-radius: 2rem;
     background-color: #f1f1f1;
-    width: 300px;
     align-items: center;
-    margin: 25px;
+    margin: 10px 25px;
     text-align: center;
     line-height: 20px;
     font-size: 20px;
+    padding-top: 20px;
 }
 .list-group {
-    width: 300px;
+    width: 270px;
 }
 .list-group-item {
-    font-size: 20px;
+    font-size: 15px;
 }
 .zoom {
     transition: transform .2s;
@@ -188,11 +190,10 @@ footer{
 .flat-number {
     background-color: #d9534f;
     color: #f1f1f1;
-    font-size: 17px;
+    font-size: 15px;
 }
 .flat-owner {
-    line-height: 30px;
-    font-size: 17px;
+    font-size: 15px;
 }
 .card-profile {
     margin-top: 50px;
@@ -210,7 +211,7 @@ footer{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 10% 10%;
+    padding: 0 8% 10%;
 }
 .profile-text {
     border: black;
@@ -223,7 +224,8 @@ footer{
 .bill-content, .bill-header, .bill-details {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
+    max-width: 1000px;
     margin: auto;
     text-align: center;
 }
@@ -257,6 +259,7 @@ tfoot td {
     text-align: left;
 }
 
+/* Index Demographics */
 #stats .vertical-heading h2 {
     color: #fff;
 }
