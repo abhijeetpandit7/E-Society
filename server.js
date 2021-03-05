@@ -32,11 +32,13 @@ app.get("/", (req,res) => {
 		pageVisit.count += 1;
 		society_collection.Society.find((err,foundSociety) => {
 			const societyCount = foundSociety.length
+			const cities = foundSociety.map(society => society.societyAddress.city.toLowerCase())
+			const cityCount = [...new Set(cities)].length
 			user_collection.User.find((err,foundUser) => {
 				const userCount = foundUser.length
 				pageVisit.save(function() {
-					console.log(pageVisit.count, societyCount, userCount)
-					res.render("index");
+					const pageVisits = pageVisit.count
+					res.render("index", {city:cityCount, society:societyCount, user:userCount, visit:pageVisits});
 				})
 			})
 		})

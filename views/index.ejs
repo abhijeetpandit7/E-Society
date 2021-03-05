@@ -102,79 +102,49 @@
     </div>
   </div>
 
- 
-  <!-- Demographics start here -->
-  <section id="stats" class="d-flex justify-content-center">
-
+  <section id="stats" class="d-flex justify-content-center w3-container" style="background-color: #1d1919;">
     <div class="content-box-md">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-12 ">
-
-
-                    <h2>We Deliver<br><strong>Excellent</strong> Services</h2>
-
-
-                </div>
-
-            </div>
-
-            <div class="row d-flex justify-content-center">
-
-                <div class="col-md-3 col-sm-3 col-xs-6">
-
-                    <!-- Stats Item 01 -->
-                    <div class="stats-item text-center">
-                        <i class='fas fa-city' style='font-size:36px'></i>
-                        <h3 class="count-num">05</h3>
-                        <p>Cities</p>
-                    </div>
-
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-6">
-
-                    <!-- Stats Item 02 -->
-                    <div class="stats-item text-center">
-                        <i class='fas fa-building' style='font-size:36px'></i>
-                        <h3 class="count-num">25</h3>
-                        <p>Socities Connected</p>
-                    </div>
-
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-6">
-
-                    <!-- Stats Item 04 -->
-                    <div class="stats-item text-center">
-                        <i class='fas fa-users' style='font-size:36px'></i>
-                        <h3 class="count-num">439</h3>
-                        <p>Happy Users</p>
-                    </div>
-
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-6">
-
-                  <!-- Stats Item 01 -->
-                  <div class="stats-item text-center">
-                    <i class='fas fa-money-check' style='font-size:36px'></i>
-                      <h3 class="count-num">1200</h3>
-                      <p>Reciepts Generated</p>
-                  </div>
-
-              </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ">
+            <h2 class="w3-center" style="font-weight:bold; margin:30px 0; color: white;">Imagine the Possibilities in a Connected Community</h2>
+          </div>
         </div>
-</div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="stats-item text-center">
+                <i class='fas fa-city' style='font-size:36px'></i>
+                <h3 class="count-num"><%= city %></h3>
+                <p>Cities</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="stats-item text-center">
+                <i class='fas fa-building' style='font-size:36px'></i>
+                <h3 class="count-num"><%= society %></h3>
+                <p>Housing Societies</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="stats-item text-center">
+                <i class='fas fa-home' style='font-size:36px'></i>
+                <h3 class="count-num"><%= user %></h3>
+                <p>Homes</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="stats-item text-center">
+              <i class='fas fa-user' style='font-size:36px'></i>
+              <h3 class="count-num"><%= visit %></h3>
+              <p>Page Visitors</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</section>
-
-  <!-- Demographics end here -->
-
-  <div class="w3-container w3-light-grey" id="contact" style="padding-bottom:100px">
+  <div class="w3-container" id="contact" style="padding-bottom:100px">
     <h1 class="w3-center" style="font-weight: bold; margin-top: 30px; font-size: 30px;">Reach Out</h1>
     <div style="margin-top:48px; max-width:500px; margin: auto;">
       <!-- Form post not working -->
@@ -189,10 +159,9 @@
     </div>
   </div>
 
-
-
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+  <!-- Counter not working -->
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
-  <script src="/public/counter.js"></script>
-
+  <script src="counter.js"></script> -->
+  
 <%- include('partials/footer') %>
