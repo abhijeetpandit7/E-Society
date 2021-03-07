@@ -117,7 +117,11 @@ app.get("/noticeboard", (req,res) => {
 })
 
 app.get("/notice", (req,res) => {
-	res.render("notice");
+	if(req.isAuthenticated() && req.user.isAdmin){
+		res.render("notice");
+	} else {
+		res.redirect("/login");
+	}
 })
 
 app.get("/bill", (req,res) => {
@@ -125,9 +129,14 @@ app.get("/bill", (req,res) => {
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
 			if(!err && foundUser){
 				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
+					// Calculate total amount of society maintenance
+					const amount  = Object.values(foundSociety.maintenanceBill)
+						.filter(ele => typeof(ele)=='number')
+						.reduce((sum,ele) => sum+ele, 0)
 					res.render("bill", {
 						resident:foundUser, 
 						society:foundSociety,
+						totalAmount: amount,
 						monthName: date.month,
 						date: date.today,
 						year: date.year
@@ -135,6 +144,18 @@ app.get("/bill", (req,res) => {
 				})
 			}
 		})	
+	} else {
+		res.redirect("/login");
+	}
+})
+
+app.get("/editBill", (req,res) => {
+	if(req.isAuthenticated() && req.user.isAdmin){
+		society_collection.Society.findOne({societyName: req.user.societyName}, (err, foundSociety) => {
+			if(!err && foundSociety){
+				res.render("editBill", {maintenanceBill:foundSociety.maintenanceBill});
+			}
+		})
 	} else {
 		res.redirect("/login");
 	}
@@ -256,6 +277,27 @@ app.post("/notice",(req,res) => {
 			})
 		}
 	})
+})
+
+app.post("/editBill",(req,res) => {
+	society_collection.Society.updateOne(
+		{societyName: req.user.societyName}, 
+		{ $set: {
+			maintenanceBill: {
+				societyCharges: req.body.societyCharges,
+				repairsAndMaintenance: req.body.repairsAndMaintenance,
+				sinkingFund: req.body.sinkingFund,
+				waterCharges: req.body.waterCharges,
+				insuranceCharges: req.body.insuranceCharges,
+				parkingCharges: req.body.parkingCharges
+			}
+		}},
+		(err,result) => {
+			if(!err){
+				res.redirect("/bill");
+			}
+		}
+	)
 })
 
 app.post("/editContacts",(req,res) => {

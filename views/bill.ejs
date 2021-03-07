@@ -2,13 +2,18 @@
 <%- include('partials/header') %>
 
 <div style="padding:4%; padding-top: 0%; font-family:sans-serif; font-size:15px;">
-  <row>
+  <div style="display: flex; justify-content: center ">
     <col-4>
-        <button id="download-btn" class="btn btn-info btn-md text-uppercase center" style="border-radius:3rem; max-width:180px; display: block; margin: auto;">
+        <button id="download-btn" class="btn btn-info btn-md text-uppercase" style="border-radius:3rem; max-width:180px; ">
           Download Bill
         </button>
-    </col-4>
-  </row>
+        <% if(resident.isAdmin){ %>
+        <a href="/editBill" class="btn btn-primary btn-md text-uppercase" style="border-radius:3rem; max-width:180px; ">
+          Edit Bill
+        </a>   
+        <% } %>
+      </col-4>
+  </div>
   <br>
   <div id="print-content">
     <table class="bill-header">
@@ -42,32 +47,32 @@
       <tr>
         <td>1</td>
         <td>Society Charges</td>
-        <td>186</td>
+        <td><%= society.maintenanceBill.societyCharges %></td>
       </tr>
       <tr>
         <td>2</td>
         <td>Repairs and Maintenance</td>
-        <td>1415</td>
+        <td><%= society.maintenanceBill.repairsAndMaintenance %></td>
       </tr>
       <tr>
         <td>3</td>
         <td>Sinking Fund</td>
-        <td>240</td>
+        <td><%= society.maintenanceBill.sinkingFund %></td>
       </tr>
       <tr>
         <td>4</td>
         <td>Water Charges</td>
-        <td>150</td>
+        <td><%= society.maintenanceBill.waterCharges %></td>
       </tr>
       <tr>
         <td>5</td>
         <td>Insurance Charges</td>
-        <td>30</td>
+        <td><%= society.maintenanceBill.insuranceCharges %></td>
       </tr>
       <tr>
         <td>6</td>
         <td>Parking Charges</td>
-        <td>150</td>
+        <td><%= society.maintenanceBill.parkingCharges %></td>
       </tr>
       <tr>
         <td>7</td>
@@ -83,7 +88,7 @@
         <tr>
           <td></td>
           <td>Total Amount Due</td>
-          <td>2171</td>
+          <td><%= totalAmount %></td>
         </tr>
       </tfoot>
     </table>

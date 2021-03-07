@@ -1,0 +1,50 @@
+<!-- Update bill -->
+<%- include('partials/header') %>
+
+<div class="container center">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-10 center" style="max-width: 600px;float: initial;">
+      <div class="card card-profile my-6">
+        <div class="card-body" style="padding:5%; margin:5% 0; padding-top:3%;">
+          <h2 style="background-color:rgb(51, 51, 51); padding:8px; color:white; text-align:center; border-radius:1rem; font-size: 20px;">
+            Edit Maintenance Bill
+          </h2>
+          <form class="form-edit" action="/editBill" method="POST">
+            <div class=row style="margin: 1%;">
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4%"> <b> Society Charges :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px;">
+                <input name="societyCharges" type="text" id="societyCharges" class="form-control" value="<%= maintenanceBill.societyCharges %>" required autofocus>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Repairs and Maintenance :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="repairsAndMaintenance" type="text" id="repairsAndMaintenance" class="form-control" value="<%= maintenanceBill.repairsAndMaintenance %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Sinking Fund :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="sinkingFund" type="text" id="sinkingFund" class="form-control" value="<%= maintenanceBill.sinkingFund %>" required> 
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Water Charges :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="waterCharges" type="text" id="waterCharges" class="form-control" value="<%= maintenanceBill.waterCharges %>"  required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Insurance Charges :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="insuranceCharges" type="text" id="insuranceCharges" class="form-control" value="<%= maintenanceBill.insuranceCharges %>"  required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Parking Charges :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="parkingCharges" type="text" id="parkingCharges" class="form-control" value="<%= maintenanceBill.parkingCharges %>"  required>
+              </div>
+            </div>
+            <div style=" margin-top: 4%;">
+              <button type="submit" class="btn btn-primary btn-md  float-right" style="margin: 10px;">Save</button>
+              <a href="/bill" class="btn btn-danger btn-md float-right" style="margin: 10px;">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

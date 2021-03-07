@@ -59,6 +59,32 @@ const societySchema = mongoose.Schema(
                 type: String,
                 default: 'Not added by admin'
             }
+        },
+        maintenanceBill: {
+            societyCharges: {
+                type: Number,
+                default: 186
+            },
+            repairsAndMaintenance: {
+                type: Number,
+                default: 1415
+            },
+            sinkingFund: {
+                type: Number,
+                default: 240
+            },
+            waterCharges: {
+                type: Number,
+                default: 150
+            },
+            insuranceCharges: {
+                type: Number,
+                default: 30
+            },
+            parkingCharges: {
+                type: Number,
+                default: 150
+            },
         }
     },
     {
