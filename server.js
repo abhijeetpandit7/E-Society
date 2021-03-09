@@ -12,6 +12,7 @@ const date = require(__dirname+'/date/date');
 
 // Access environment variables
 dotenv.config();
+const stripe = require('stripe')(process.env.SECRET_KEY);
 const app = express()
 app.set('view engine','ejs');
 app.use(express.static('public'));
@@ -129,18 +130,52 @@ app.get("/bill", (req,res) => {
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
 			if(!err && foundUser){
 				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
-					// Calculate total amount of society maintenance
-					const amount  = Object.values(foundSociety.maintenanceBill)
+					const dateToday = new Date();
+					// Payment required for total number of months
+					let totalMonth = 0
+					// If lastPayment doesn't exists
+					let dateFrom = foundUser.createdAt;
+					// If lastPayment exists
+					if(foundUser.lastPayment.date){
+						dateFrom = foundUser.lastPayment.date;
+						totalMonth = date.monthDiff(dateFrom,dateToday)
+					}
+					else {
+						// Add an extra month, as users joining date month payment's also pending
+						totalMonth = date.monthDiff(dateFrom,dateToday) + 1
+					}
+					// Calculate monthly bill of society maintenance
+					const monthlyTotal  = Object.values(foundSociety.maintenanceBill)
 						.filter(ele => typeof(ele)=='number')
 						.reduce((sum,ele) => sum+ele, 0)
-					res.render("bill", {
-						resident:foundUser, 
-						society:foundSociety,
-						totalAmount: amount,
-						monthName: date.month,
-						date: date.today,
-						year: date.year
-					});
+					let credit = 0;
+					let due = 0;
+					if(totalMonth==0){
+						// Calculate credit balance
+						credit = monthlyTotal;
+					}
+					else if(totalMonth>1){
+						// Calculate pending due
+						due =  (totalMonth-1)*monthlyTotal
+					}
+					const totalAmount = monthlyTotal + due - credit
+					
+					// Update amount to be paid on respective user collection
+					user_collection.User.findOne({_id: req.user.id}, (err,foundUser) => {
+						foundUser.makePayment = totalAmount;
+						foundUser.save(function() {
+							res.render("bill", {
+								resident:foundUser, 
+								society:foundSociety,
+								totalAmount: totalAmount,
+								pendingDue: due,
+								creditBalance: credit,
+								monthName: date.month,
+								date: date.today,
+								year: date.year
+							});
+						})
+					})
 				})
 			}
 		})	
@@ -245,6 +280,51 @@ app.get("/editProfile", (req,res) => {
 		res.redirect("/login");
 	}
 })
+
+app.get('/success', async (req, res) => {
+	const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+	const customer = await stripe.customers.retrieve(session.customer);
+	// Update payment made details for respective user
+	user_collection.User.findOne({_id: req.user.id}, (err,foundUser) => {
+		foundUser.lastPayment.date = new Date(customer.created*1000);
+		foundUser.lastPayment.amount = session.amount_total/100;
+		foundUser.lastPayment.invoice = customer.invoice_prefix;
+		foundUser.save(function() {
+			const transactionDate = new Date(customer.created*1000).toLocaleString().split(', ')[0]
+			res.render("success", {
+				invoice: customer.invoice_prefix, 
+				amount: session.amount_total/100, 
+				date: transactionDate
+			});
+		})
+	})
+});
+
+app.post('/checkout-session', async (req, res) => {
+	const session = await stripe.checkout.sessions.create({
+	  payment_method_types: ['card'],
+	  line_items: [
+		{
+		  price_data: {
+			currency: 'inr',
+			product_data: {
+			  name: req.user.societyName,
+			  images: ['https://www.flaticon.com/svg/vstatic/svg/3800/3800518.svg?token=exp=1615226542~hmac=7b5bcc7eceab928716515ebf044f16cd'],
+			},
+			unit_amount: req.user.makePayment*100,
+		  },
+		  quantity: 1,
+		},
+	  ],
+	  mode: 'payment',
+	//   success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
+	//   cancel_url: "http://localhost:3000/bill",
+	  success_url: "https://e-societyy.herokuapp.com/success?session_id={CHECKOUT_SESSION_ID}",
+	  cancel_url: "https://e-societyy.herokuapp.com/bill",
+	});
+  
+	res.json({ id: session.id });
+  });
 
 app.post("/complaint",(req,res) => {
 	user_collection.User.findById(req.user.id, (err, foundUser) => {

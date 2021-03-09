@@ -25,6 +25,7 @@
     "lodash": "^4.17.20",
     "mongoose": "^5.11.17",
     "passport": "^0.4.1",
-    "passport-local-mongoose": "^6.1.0"
+    "passport-local-mongoose": "^6.1.0",
+    "stripe": "^8.137.0"
   }
 }

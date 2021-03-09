@@ -1,0 +1,45 @@
+<!-- Payment successfull -->
+<%- include('partials/header') %>
+
+<div class="container container-profile">
+  <div class="row">
+    <div class="col">
+      <div class="card card-profile my-5">
+        <div id="print-content" class="card-body" style="padding:8%;">
+          <div style="display: flex; justify-content: center">
+            <i style="color:green;" class="fas fa-5x fa-check-circle"></i>
+          </div>
+          <div style="display: flex; justify-content: center">
+            <h1 style="font-weight: bold;">Success</h1>
+          </div>
+          <hr class="my-4" style="height: 3px; background-color:lightgreen; border-color:lightgreen ; border-radius:4px;">
+          <div style="display: flex; justify-content: center">
+            <p style="color: gray;"><span style="font-weight: bold; color: gray;">Receipt </span> #<%= invoice %></p>
+          </div>
+          <div style="padding: 15px;font-size: 15px; font-family: sans-serif; padding-left: 0%">
+            <div style="display: flex; justify-content: space-evenly">
+              <div style="display: flex; flex-direction: column;">
+                <p style="font-weight: bold;">Amount Paid</p>
+                <p>₹<%= amount %></p>
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <p style="font-weight: bold;">Date Paid</p>
+                <p><%= date %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center ">
+    <button id="download-btn" class="btn btn-info btn-md text-uppercase" style="border-radius:3rem; max-width:180px; margin-top: 40px;">
+      Download
+    </button>     
+    <a href="/bill" class="btn btn-primary btn-md text-uppercase" style="border-radius:3rem; max-width:180px; margin-top: 40px;">
+      View Receipt
+    </a>   
+  </div>
+</div>
+
+<%- include('partials/footer') %>
