@@ -172,7 +172,8 @@ app.get("/bill", (req,res) => {
 								creditBalance: credit,
 								monthName: date.month,
 								date: date.today,
-								year: date.year
+								year: date.year,
+								receipt: foundUser.lastPayment
 							});
 						})
 					})
@@ -317,10 +318,10 @@ app.post('/checkout-session', async (req, res) => {
 		},
 	  ],
 	  mode: 'payment',
-	//   success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
-	//   cancel_url: "http://localhost:3000/bill",
-	  success_url: "https://e-societyy.herokuapp.com/success?session_id={CHECKOUT_SESSION_ID}",
-	  cancel_url: "https://e-societyy.herokuapp.com/bill",
+	  success_url: "http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}",
+	  cancel_url: "http://localhost:3000/bill",
+	//   success_url: "https://e-societyy.herokuapp.com/success?session_id={CHECKOUT_SESSION_ID}",
+	//   cancel_url: "https://e-societyy.herokuapp.com/bill",
 	});
   
 	res.json({ id: session.id });

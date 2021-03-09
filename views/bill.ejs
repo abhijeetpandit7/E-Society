@@ -33,18 +33,15 @@
         </td>
       </tr>
     </table>
-    <table style="border: 1px solid #ddd;" class="bill-details">
-      <tr>
-        <td>Bill No: <b>1310</b></td>
-        <td style="padding-left: 10%;">For: <b><%= monthName %>, <%= year %></b></td>
-        <td style="text-align:center;">Date: <b><%= date %></b></td>
-      </tr>
-      <tr>
-        <td>Name: <b><%= resident.firstName %> <%= resident.lastName %></b></td>
-        <td style="padding-left: 13%;">Flat: <b><%= resident.flatNumber %></b></td>
-        <td></td>
-      </tr>
-    </table>
+    <div style="padding: 10px 20px; display: flex; justify-content: space-between; border: 1px solid #ddd; border-bottom: none;  max-width: 1000px; margin: auto;">
+      <p>Bill No: <b>1301</b></p>
+      <p>For: <b><%= monthName %>, <%= year %></b></p>
+      <p>Date: <b><%= date %></b></p>
+    </div>
+    <div style="padding: 0 20px; display: flex; justify-content: space-between; border: 1px solid #ddd;border-top: none; border-bottom: none;  max-width: 1000px; margin: auto;">
+      <p>Name: <b><%= resident.firstName %> <%= resident.lastName %></b></p>
+      <p>Flat: <b><%= resident.flatNumber %></b></p>
+    </div>
     <table class="bill-content">
       <tr>
         <th>Sr. No.</th>
@@ -101,6 +98,55 @@
     </table>
   </div>
   <br>
+
+  <% if(receipt.invoice){ %>
+  <hr class="my-4">
+  <div style="display: flex; justify-content: center ">
+    <button id="download-receipt" class="btn btn-info btn-md text-uppercase" style="border-radius:3rem; max-width:180px; margin: 0 0 30px;">
+      Download Receipt
+    </button>
+  </div>
+  <div id="receipt">
+    <table class="bill-header">
+      <tr>
+        <td>
+          <p><%= society.societyName %></p>
+          <p><%= society.societyAddress.address %>, <%= society.societyAddress.city %>, 
+            <%= society.societyAddress.district %>-<%= society.societyAddress.postalCode %>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <% let [date, month, year1]    = new Date(receipt.date).toLocaleDateString().split("/") %>
+    <% let receiptMonth = new Date(receipt.date).toLocaleString("default", { month: "long" }) %>
+    <div id="receipt" style="display: flex; justify-content: center; border: 1px solid #ddd; border-bottom: none;  max-width: 1000px; margin: auto;">
+      <p style="padding: 20px 0 10px"><b>Receipt</b></p>
+    </div>
+    <div style="padding: 0 20px 10px; display: flex; justify-content: space-between; border: 1px solid #ddd; border-top: none; border-bottom: none;  max-width: 1000px; margin: auto;">
+      <p>Receipt: <b><%= receipt.invoice %></b></p>
+      <p>For: <b><%= receiptMonth %>, <%= year1 %></b></p>
+      <p>Date: <b><%= date %>/<%= month %>/<%= year1 %></b></p>
+    </div>
+    <div  style="padding: 0 20px; display: flex; justify-content: space-between; border: 1px solid #ddd; border-top: none; border-bottom: none;  max-width: 1000px; margin: auto;">
+      <p>Received with thanks from <%= resident.flatNumber %> - <%= resident.firstName %> <%= resident.lastName %>, 
+        the sum of rupees <span style="color: black;" id="words"></span style="color: black;"> on <%= date %> <%= receiptMonth %>, <%= year1 %>.
+      </p>
+    </div>
+    <div style="padding: 20px 20px 10px; display: flex; justify-content: space-between; flex-direction: column; border: 1px solid #ddd; border-bottom: none; border-top: none;  max-width: 1000px; margin: auto;">
+      <p><b>Remark:</b></p>
+      <p>Being amount received from member towards maintenance charges for the month of <%= receiptMonth %>, <%= year1 %>.</p>
+    </div>
+    <input id="number" type="text" style="display: none;" value="<%= receipt.amount %>" />
+    <div style="padding: 20px 20px; display: flex; justify-content: space-between; border: 1px solid #ddd; border-top: none;  max-width: 1000px; margin: auto;">
+      <p>₹<b><%= receipt.amount %></b></p>
+      <div style="display: flex; justify-content: space-between; flex-direction: column">
+        <p>For <%= society.societyName %></p>
+        <br>
+        <p>Secretary/Treasurer</p>
+      </div>
+    </div>
+  </div>
+  <% } %>
 </div>
 
 <script type="text/javascript">
@@ -130,6 +176,23 @@
         console.error("Error:", error);
       });
   });
+</script>
+
+<script>
+  var a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+  var b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+  function inWords (num) {
+      if ((num = num.toString()).length > 9) return 'overflow';
+      n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+      if (!n) return; var str = '';
+      str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+      str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+      str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+      str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+      str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+      return str;
+  }
+  document.getElementById('words').innerHTML = inWords(document.getElementById('number').value);
 </script>
 
 <%- include('partials/footer') %>
