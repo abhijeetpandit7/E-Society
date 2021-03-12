@@ -160,22 +160,29 @@ app.get("/bill", (req,res) => {
 					}
 					const totalAmount = monthlyTotal + due - credit
 					
-					// Update amount to be paid on respective user collection
-					user_collection.User.findOne({_id: req.user.id}, (err,foundUser) => {
-						foundUser.makePayment = totalAmount;
-						foundUser.save(function() {
-							res.render("bill", {
-								resident:foundUser, 
-								society:foundSociety,
-								totalAmount: totalAmount,
-								pendingDue: due,
-								creditBalance: credit,
-								monthName: date.month,
-								date: date.today,
-								year: date.year,
-								receipt: foundUser.lastPayment
-							});
-						})
+					// Fetch society residents for admin features
+					user_collection.User.find({"societyName":req.user.societyName},(err,foundUsers) => {
+						if(!err && foundUsers){
+							// Update amount to be paid on respective user collection
+							user_collection.User.findOne({_id: req.user.id}, (err,foundUser) => {
+								foundUser.makePayment = totalAmount;
+								foundUser.save(function() {
+									res.render("bill", {
+										resident:foundUser, 
+										society:foundSociety,
+										totalAmount: totalAmount,
+										pendingDue: due,
+										creditBalance: credit,
+										monthName: date.month,
+										date: date.today,
+										year: date.year,
+										receipt: foundUser.lastPayment,
+										societyResidents:foundUsers,
+										monthlyTotal: monthlyTotal
+									});
+								})
+							})
+						}
 					})
 				})
 			}
