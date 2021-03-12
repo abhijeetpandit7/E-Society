@@ -14,24 +14,36 @@
       </col-4>
     </row>
     <div class="row">
-      <% users.forEach(function(user){ %>
-        <% if(user.complaints.length){ %>
-        <div class="col">
-          <div class="card card-profile my-5" style="margin-top: 10px;">
-            <div class="card-body" style="padding:3% 8% 3%;">
-              <div>
-                <i class="fas fa-plus-circle"></i> <b><%= user.complaints.slice(-1)[0].category %></b>
-                <p style="padding-left: 20px; color: grey;">
-                  <%= user.complaints.slice(-1)[0].date %> - <%= user.complaints.slice(-1)[0].type %><br>
-                  Raised by <%=user.firstName%> <%=user.lastName%>
-                </p>
-                <p style="padding-left: 20px"><%= user.complaints.slice(-1)[0].description %></p>
+      <form action="/closeTicket" method="POST">
+        <% users.forEach((user) => { %>
+          <% let isUserTicketOpen = user.complaints.some(ticket => {if(ticket.status==='open') {return true}}) %>
+          <% if(isUserTicketOpen) { %>
+            <div class="col">
+              <div class="card card-profile my-5" style="margin-top: 10px;">
+                <div class="card-body" style="padding:3% 8% 3%;">
+                  <div>
+                    <% user.complaints.forEach((complaint,index) => { %>
+                      <% if(complaint.status==='open'){ %>
+                        <i class="fas fa-plus-circle"></i> <b><%= complaint.category %></b>
+                        <p style="padding-left: 20px; color: grey;">
+                          <%= complaint.date %> - <%= complaint.type %><br>
+                          Raised by <%=user.firstName%> <%=user.lastName%> - <%=user.flatNumber%>
+                        </p>
+                        <p style="padding-left: 20px"><%= complaint.description %></p>
+                        <input type="checkbox" name=ticket[<%= user._id %>] value="<%= index %>" onChange="this.form.submit()" style="color: grey; margin-left: 20px;">
+                        <span style="color: grey;"> Close Ticket</span>
+                        <% if(user.complaints[index+1]){ %>
+                          <hr class="my-4">
+                        <% } %>
+                      <% } %>
+                    <% }) %>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <% } %>
-      <% }) %>
+          <% } %>
+        <% }) %>
+      </form>
     </div>    
   </div>
 </div>

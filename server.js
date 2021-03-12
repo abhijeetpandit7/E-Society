@@ -334,12 +334,42 @@ app.post("/complaint",(req,res) => {
 				'date': date.dateString,
 				'category': req.body.category,
 				'type': req.body.type,
-				'description': req.body.description
+				'description': req.body.description,
+				'status': 'open'
 			}
 			foundUser.complaints.push(complaint);
 			foundUser.save(function() {
 				res.redirect("/helpdesk");
 			})
+		}
+	})
+})
+
+app.post("/closeTicket",(req,res) => {
+	const user_id = Object.keys(req.body.ticket)[0]
+	const ticket_index = Object.values(req.body.ticket)[0]
+	const ticket = 'complaints.'+ticket_index
+	// Find user for fetching ticket data
+	user_collection.User.findById(user_id, (err, foundUser) => {
+		if(!err && foundUser){
+			user_collection.User.updateOne(
+				{_id:user_id},
+				{ $set: {
+					[ticket]: {
+						status: 'close',
+						'date': foundUser.complaints[ticket_index].date,
+						'category': foundUser.complaints[ticket_index].category,
+						'type': foundUser.complaints[ticket_index].type,
+						'description': foundUser.complaints[ticket_index].description
+					}
+				}},
+				(err,result) => {
+					if(!err){
+						console.log(result)
+						res.redirect("/helpdesk");
+					}
+				}
+			)		
 		}
 	})
 })

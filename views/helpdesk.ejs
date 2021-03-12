@@ -8,9 +8,9 @@
   <div class="container container-profile">
     <row>
       <col-4>
-          <a href="/complaint" class="btn btn-danger btn-md text-uppercase center" style="border-radius:3rem; max-width:180px; display: block; margin: auto;">
-            Raise Complaint
-          </a>
+        <a href="/complaint" class="btn btn-danger btn-md text-uppercase center" style="border-radius:3rem; max-width:180px; display: block; margin: auto;">
+          Raise Complaint
+        </a>
       </col-4>
     </row>
     <div class="row">
@@ -18,11 +18,18 @@
         <div class="card card-profile my-5">
           <div class="card-body" style="padding:8% 8% 3%;">
             <div>
-            <% complaints.reverse().forEach(function(complaint){ %>
+            <% complaints.reverse().forEach((complaint, index) => { %>
               <i class="fas fa-plus-circle"></i> <b><%= complaint.category %></b>
               <p style="padding-left: 20px; color: grey;"><%= complaint.date %> - <%= complaint.type %></p>
               <p style="padding-left: 20px"><%= complaint.description %></p>
-              <hr class="my-4">
+              <% if(complaint.status==='open'){ %>
+                <p style="padding-left: 20px; border-radius:3rem; background-color: lightgreen; max-width: 75px">Open</p>
+              <% } else if(complaint.status==='close') { %>
+                <p style="padding-left: 20px; border-radius:3rem; background-color: lightcoral; max-width: 90px;">Closed</p>
+              <% } %>
+              <% if(complaints[index+1]){ %>
+                <hr class="my-4">
+              <% } %>
             <% }) %>
             </div>
           </div>
