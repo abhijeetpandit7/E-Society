@@ -10,6 +10,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -44,15 +45,17 @@
 
   <section class="banner" id="banner">
     <div class="content">
-      <h1>E-Society</h1>
-      <p>
+      <h1 data-aos="fade-right">E-Society</h1>
+      <p data-aos="fade-left">
         Simplify everyday living for your housing society. Manage accounts and payments, 
         resolve complaints and keep the community up-to-date with all that’s going on in the society.
       </p>
-      <a class="btn btn-success btn-md" href="/login" role="button">LOGIN</a>
-      <a class="btn btn-primary btn-md" href="/signup" role="button">SIGN UP</a>
-      <br>
-      <a class="btn btn-info btn-md" href="/register" role="button">REGISTER</a>
+      <div data-aos="zoom-in">
+        <a class="btn btn-success btn-md" href="/login" role="button">LOGIN</a>
+        <a class="btn btn-primary btn-md" href="/signup" role="button">SIGN UP</a>
+        <br>
+        <a class="btn btn-info btn-md" href="/register" role="button">REGISTER</a>
+      </div>
     </div>
   </section>
   <br>
@@ -61,17 +64,17 @@
       <div class="w3-container" style="padding:0 16px" id="about">
         <h2 class="w3-center" style="font-weight: bold;margin-top: 30px;">Why choose E-Society?</h2>
         <div class="w3-row-padding w3-center">
-          <div class="w3-third">
+          <div class="w3-third" data-aos="flip-up" >
             <i class="fa fa-users w3-margin-bottom w3-jumbo w3-center"></i>
             <p class="w3-large">Simple Connectivity</p>
             <p>Give your residents an easier way to connect with other residents of the housing society.</p>
           </div>
-          <div class="w3-third">
+          <div class="w3-third" data-aos="flip-up">
             <i class="fa fa-clipboard w3-margin-bottom w3-jumbo"></i>
             <p class="w3-large">Hassle-free Communication</p>
             <p>Get the tools you need to keep everyone on the same page, notify about the events on the digital noticeboard.</p>
           </div>
-          <div class="w3-third">
+          <div class="w3-third" data-aos="flip-up">
             <i class="fa fa-file-invoice-dollar w3-margin-bottom w3-jumbo"></i>
             <p class="w3-large">Smart Money Management</p>
             <p>Manage your resident payments for monthly maintainence bills of your housing society.</p>
@@ -82,12 +85,12 @@
     <div class="row">
       <div class="w3-container" style="padding:0 16px 100px" id="about">
         <div class="w3-row-padding w3-center" style="margin-top:16px">
-          <div class="w3-third">
+          <div class="w3-third" data-aos="flip-down">
             <i class="fa fa-comment w3-margin-bottom w3-jumbo w3-center"></i>
             <p class="w3-large">Helpdesk Resolution</p>
             <p>Easily raise Maintenance Requests and track to Quick Closure, Provide comments & feedback.</p>
           </div>
-          <div class="w3-third">
+          <div class="w3-third" data-aos="flip-down">
             <i class="fa fa-id-card w3-margin-bottom w3-jumbo"></i>
             <p class="w3-large">Emergency Contacts</p>
             <p>
@@ -95,7 +98,7 @@
               ambulance or pharmacy; accessible to everyone.
             </p>
           </div>
-          <div class="w3-third">
+          <div class="w3-third" data-aos="flip-down">
             <i class="fa fa-user-circle w3-margin-bottom w3-jumbo"></i>
             <p class="w3-large">Profile Management</p>
             <p>Provide flexibility to residents for managing and updating their user profile.</p>
@@ -110,32 +113,32 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <h2 class="w3-center" style="font-weight:bold; margin:30px 0; color: white;">Imagine the Possibilities in a Connected Community</h2>
+            <h2 class="w3-center" style="font-weight:bold; margin:30px 0; color: white;" data-aos="zoom-in-up">Imagine the Possibilities in a Connected Community</h2>
           </div>
         </div>
         <div class="row d-flex justify-content-center">
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-3 col-xs-6" data-aos="zoom-in-down">
             <div class="stats-item text-center">
                 <i class='fas fa-city' style='font-size:36px'></i>
                 <h3 class="counter"><%= city %></h3>
                 <p>Cities</p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-3 col-xs-6" data-aos="zoom-in-down">
             <div class="stats-item text-center">
                 <i class='fas fa-building' style='font-size:36px'></i>
                 <h3 class="counter"><%= society %></h3>
                 <p>Housing Societies</p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-3 col-xs-6" data-aos="zoom-in-down">
             <div class="stats-item text-center">
                 <i class='fas fa-home' style='font-size:36px'></i>
                 <h3 class="counter"><%= user %></h3> 
                 <p>Homes</p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-3 col-xs-6">
+          <div class="col-md-3 col-sm-3 col-xs-6" data-aos="zoom-in-down">
             <div class="stats-item text-center">
               <i class='fas fa-user' style='font-size:36px'></i>
               <h3 class="counter"><%= visit %></h3>
@@ -147,7 +150,7 @@
     </div>
   </section>
 
-  <div class="w3-container" id="contact" style="padding-bottom:100px">
+  <div class="w3-container" id="contact" style="padding-bottom:100px" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
     <h1 class="w3-center" style="font-weight: bold; margin-top: 30px; font-size: 30px;">Reach Out</h1>
     <div style="margin-top:48px; max-width:500px; margin: auto;">
       <!-- Form post not working -->
@@ -166,5 +169,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery.counterup@2.1.0/jquery.counterup.min.js"></script>
   <script src="counter.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
   
 <%- include('partials/footer') %>
