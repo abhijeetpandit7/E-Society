@@ -117,7 +117,7 @@
         </td>
       </tr>
     </table>
-    <% let [date, month, year1]    = new Date(receipt.date).toLocaleDateString().split("/") %>
+    <% let [month, date, year1]    = new Date(receipt.date).toLocaleDateString().split("/") %>
     <% let receiptMonth = new Date(receipt.date).toLocaleString("default", { month: "long" }) %>
     <div id="receipt" style="display: flex; justify-content: center; border: 1px solid #ddd; border-bottom: none;  max-width: 1000px; margin: auto;">
       <p style="padding: 20px 0 10px"><b>Receipt</b></p>

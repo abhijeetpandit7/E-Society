@@ -1,5 +1,5 @@
 const date = new Date();
-const today = date.toLocaleString().split(',')[0];
+const today = date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
 const month = date.toLocaleString("default", { month: "long" });
 const year = today.split('/')[2];
 exports.today = today
