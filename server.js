@@ -60,7 +60,26 @@ app.get("/register", (req,res) => {
 
 app.get("/home", (req,res) => {
 	if(req.isAuthenticated()){
-		res.render("home");
+		// Conditionally render home as per user validation status
+		if(req.user.validation=='approved'){
+			res.render("home");
+		} else if(req.user.validation=='applied') {
+			res.render("homeStandby",{
+				icon: 'fa-user-clock',
+				title: 'Account pending for approval',
+				content: 'Your account will be active as soon as it is approved by your community.'+
+                'It usually takes 1-2 days for approval. If it is taking longer to get approval, ' +
+                'contact your society admin.'
+			});
+		} else {
+			res.render("homeStandby",{
+				icon: 'fa-user-lock',
+				title: 'Account approval declined',
+				content: 'Your account registration has been declined. '+
+                'Please contact the society administrator for more details.' +
+				'You can edit the request and apply again.'
+			});
+		}
 	} else {
 		res.redirect("/login");
 	}
@@ -87,11 +106,23 @@ app.get("/loginFailure", (req,res) => {
 });
 
 app.get("/residents", (req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated() && req.user.validation=='approved'){
 		const userSocietyName = req.user.societyName;
-		user_collection.User.find({"societyName":userSocietyName},(err,foundUsers) => {
+		user_collection.User.find({$and: [{"societyName":userSocietyName}, {"validation":"approved"}]},
+		(err,foundUsers) => {
 			if(!err && foundUsers){
-				res.render("residents", {societyResidents:foundUsers, societyName:userSocietyName});
+				// Fetch users with applied status
+				user_collection.User.find({$and: [{"societyName":userSocietyName}, {"validation":"applied"}]},
+				(err,foundAppliedUsers) => {
+					if(!err && foundAppliedUsers){
+						res.render("residents", {
+							societyResidents: foundUsers, 
+							appliedResidents: foundAppliedUsers,
+							societyName: userSocietyName,
+							isAdmin: req.user.isAdmin
+						});
+					}
+				})
 			}
 		})
 	} else {
@@ -100,13 +131,13 @@ app.get("/residents", (req,res) => {
 })
 
 app.get("/noticeboard", (req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated() && req.user.validation=='approved'){
 		society_collection.Society.findOne({societyName: req.user.societyName}, (err,foundSociety) => {
 			if(!err && foundSociety){
 				// Check if no notice is present
 				if(!foundSociety.noticeboard.length){
 					foundSociety.noticeboard = [{
-						'subject': 'Stay tuned for upcoming notifications'
+						'subject': 'Access all important announcements, notices and circulars here.'
 					}]
 				}
 				res.render("noticeboard", {notices:foundSociety.noticeboard, isAdmin:req.user.isAdmin});
@@ -126,7 +157,7 @@ app.get("/notice", (req,res) => {
 })
 
 app.get("/bill", (req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated() && req.user.validation=='approved'){
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
 			if(!err && foundUser){
 				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
@@ -160,8 +191,8 @@ app.get("/bill", (req,res) => {
 					}
 					const totalAmount = monthlyTotal + due - credit
 					
-					// Fetch society residents for admin features
-					user_collection.User.find({"societyName":req.user.societyName},(err,foundUsers) => {
+					// Fetch validated society residents for admin features
+					user_collection.User.find({$and: [{"societyName":req.user.societyName}, {"validation":"approved"}]},(err,foundUsers) => {
 						if(!err && foundUsers){
 							// Update amount to be paid on respective user collection
 							user_collection.User.findOne({_id: req.user.id}, (err,foundUser) => {
@@ -205,7 +236,7 @@ app.get("/editBill", (req,res) => {
 })
 
 app.get("/helpdesk",(req,res) => {
-	if(req.isAuthenticated()) {
+	if(req.isAuthenticated() && req.user.validation=='approved') {
 		// Conditonally render user/admin helpdesk
 		if(req.user.isAdmin) {
 			user_collection.User.find({"societyName":req.user.societyName}, (err, foundUsers) => {
@@ -229,7 +260,7 @@ app.get("/helpdesk",(req,res) => {
 })
 
 app.get("/complaint",(req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated() && req.user.validation=='approved'){
 		res.render("complaint");
 	} else {
 		res.redirect("/login");
@@ -237,7 +268,7 @@ app.get("/complaint",(req,res) => {
 })
 
 app.get("/contacts",(req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated()  && req.user.validation=='approved'){
 		const userSocietyName = req.user.societyName;
 		society_collection.Society.findOne({"societyName":userSocietyName},(err,foundSociety) => {
 			if(!err && foundSociety){
@@ -262,7 +293,7 @@ app.get("/editContacts",(req,res) => {
 })
 
 app.get("/profile", (req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated()  && req.user.validation=='approved'){
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
 			if(!err && foundUser){
 				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
@@ -276,7 +307,7 @@ app.get("/profile", (req,res) => {
 })
 
 app.get("/editProfile", (req,res) => {
-	if(req.isAuthenticated()){
+	if(req.isAuthenticated() && req.user.validation=='approved'){
 		user_collection.User.findById(req.user.id, (err, foundUser) => {
 			if(!err && foundUser){
 				society_collection.Society.findOne({societyName: foundUser.societyName}, (err,foundSociety) => {
@@ -334,6 +365,22 @@ app.post('/checkout-session', async (req, res) => {
 	res.json({ id: session.id });
   });
 
+  app.post("/approveResident",(req,res) => {
+	const user_id = Object.keys(req.body.validate)[0]
+	const validate_state = Object.values(req.body.validate)[0]
+	user_collection.User.updateOne(
+		{_id:user_id},
+		{ $set: {
+			validation: validate_state
+		}},
+		(err,result) => {
+			if(!err){
+				res.redirect("/residents");
+			}
+		}
+	)
+})
+
 app.post("/complaint",(req,res) => {
 	user_collection.User.findById(req.user.id, (err, foundUser) => {
 		if(!err && foundUser){
@@ -372,7 +419,6 @@ app.post("/closeTicket",(req,res) => {
 				}},
 				(err,result) => {
 					if(!err){
-						console.log(result)
 						res.redirect("/helpdesk");
 					}
 				}
@@ -536,6 +582,7 @@ app.post("/register", (req,res) => {
 		if(!err && !result){
 			user_collection.User.register(
 				{
+					validation: 'approved',
 					isAdmin: true,
 					username: req.body.username,
 					societyName: req.body.societyName,

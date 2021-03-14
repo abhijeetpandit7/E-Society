@@ -1,0 +1,74 @@
+<!-- New user applied home page -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>E-society</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Simplify everyday living for your housing society!">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/1c9ad4b785.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid" id="navbar">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="/home">
+          <img src="images/diversity.png" alt="E-Society">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="navlist">
+          <li><a href="#" disabled>Residents</a></li>
+          <li><a href="#" disabled>Noticeboard</a></li>
+          <li><a href="#" disabled>Bill</a></li>
+          <li><a href="#" disabled>Helpdesk</a></li>
+          <li><a href="#" disabled>Emergency</a></li>
+          <li><a href="#" disabled>Profile</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div style="padding:4%; padding-top: 0%; font-family:sans-serif; font-size:14px;">
+    <div class="container container-profile" style="max-width: 500px;">
+      <div class="row">
+        <div class="col">
+          <div class="card card-profile my-5" style="margin-top: 10px;">
+            <div class="card-body" style="padding:3% 8% 3%; text-align: center;">
+              <p><i class="fas fa-5x <%= icon %>"></i></p>
+              <p style="font-size: 15px;"><b><%= title %></b></p>
+              <p><%= content %></p>
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+    <div style="display: flex; justify-content: center ">
+      <col-4>   
+        <a href="/logout" class="btn btn-danger btn-md" style="border-radius:3rem; max-width:180px;">
+          Log Out
+        </a>
+        <a href="/newRequest" class="btn btn-primary btn-md" style="border-radius:3rem; max-width:180px; ">
+          Edit Request
+        </a>
+      </col-4>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>

@@ -4,6 +4,11 @@ const passport = require('passport');
 
 const userSchema = new mongoose.Schema (
 	{
+		validation: {
+			type: String,
+			required: true,
+			default: 'applied'
+		},
 		isAdmin: {
 			type: Boolean,
 			required: true,
