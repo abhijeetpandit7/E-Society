@@ -1,0 +1,46 @@
+<!-- Member edit signup form  -->
+<%- include('partials/header') %>
+
+<div class="container center">
+  <div class="row">
+    <div class="col-sm-12 col-md-9 col-lg-10 center" style="max-width: 600px;float: initial;">
+      <div class="card card-profile my-6">
+        <div class="card-body" style="padding:5%; margin:5% 0; padding-top:3%;">
+          <h2 style="background-color:rgb(51, 51, 51); padding:8px; color:white; text-align:center; border-radius:1rem; font-size: 20px;">
+            New Request
+          </h2>
+          <form class="form-edit" action="/newRequest" method="POST">
+            <div class=row style="margin: 1%;">
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4%"> <b> First Name :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px;">
+                <input name="firstName" type="tel" id="firstName" class="form-control" value="<%= user.firstName %>" autofocus required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Last Name :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4px ">
+                <input name="lastName" type="tel" id="lastName" class="form-control" value="<%= user.lastName %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Phone Number :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="phoneNumber" type="tel" id="phoneNumber" class="form-control" value="<%= user.phoneNumber %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Society Name :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="societyName" type="tel" id="societyName" class="form-control" value="<%= user.societyName %>" required>
+              </div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Flat Number :</b></div>
+              <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
+                <input name="flatNumber" type="tel" id="flatNumber" class="form-control" value="<%= user.flatNumber %>" required>
+              </div>
+            </div>
+            <div style=" margin-top: 4%;">
+              <button type="submit" class="btn btn-primary btn-md  float-right" style="margin: 10px;">Submit</button>
+              <a href="/home" class="btn btn-danger btn-md float-right" style="margin: 10px;">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

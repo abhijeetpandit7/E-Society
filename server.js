@@ -85,6 +85,14 @@ app.get("/home", (req,res) => {
 	}
 });
 
+app.get("/newRequest", (req,res) => {
+	if(req.isAuthenticated() && req.user.validation!='approved'){
+		res.render("signupEdit", {user: req.user});
+	} else {
+		res.redirect("/home")
+	}
+})
+
 app.get("/logout", (req,res) => {
 	req.logout();
 	res.redirect("/")
@@ -239,7 +247,7 @@ app.get("/helpdesk",(req,res) => {
 	if(req.isAuthenticated() && req.user.validation=='approved') {
 		// Conditonally render user/admin helpdesk
 		if(req.user.isAdmin) {
-			user_collection.User.find({"societyName":req.user.societyName}, (err, foundUsers) => {
+			user_collection.User.find({$and: [{"societyName":req.user.societyName}, {"validation":"approved"}]}, (err, foundUsers) => {
 				if(!err && foundUsers) {
 					res.render("helpdeskAdmin", {users:foundUsers});
 				}
@@ -522,6 +530,44 @@ app.post("/editProfile",(req,res) => {
 			}
 		}
 	)
+})
+
+app.post("/newRequest", (req,res) => {
+	// Submit new signup only if society exists
+	society_collection.Society.findOne({societyName: req.body.societyName}, (err,foundSociety) => {
+		if(!err && foundSociety){
+			user_collection.User.updateOne(
+				{_id: req.user.id}, 
+				{ $set: {
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					phoneNumber: req.body.phoneNumber,
+					societyName: req.body.societyName,
+					flatNumber: req.body.flatNumber,
+					validation: 'applied'
+				}},
+				(err,result) => {
+					if(!err){
+						res.redirect("/home");
+					}
+				}
+			);
+		}
+		else{
+			const failureMessage = "Sorry, society is not registered, Please double-check society name."
+			const hrefLink = "/newRequest"
+			const secondaryMessage = "Account not created?";
+			const hrefSecondaryLink = "/signup";
+			const secondaryButton = "Create Account";
+			res.render("failure",{
+				message:failureMessage,
+				href:hrefLink,
+				messageSecondary:secondaryMessage,
+				hrefSecondary:hrefSecondaryLink,
+				buttonSecondary:secondaryButton
+			});
+		}
+	});
 })
 
 app.post("/signup", (req,res) => {
