@@ -12,12 +12,8 @@
           <div style="max-width:500px; text-align:center; margin:auto; display:block; padding:10px 10%;background-color:whitesmoke; border-radius:0.5rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.01); margin-bottom: 10px;">
             <p><%= user.firstName %> <%= user.lastName %> - <%= user.flatNumber %></p>
             <div>
-              <span style="background-color: lightgreen;color:black; border-radius:0.5rem; max-width:fit-content; padding:5px 10px; margin-right: 10px;">
-                <input type="checkbox" name=validate[<%= user._id %>] value="approved" onChange="this.form.submit()"> Accept
-              </span>
-              <span style="background-color: lightcoral;color:black; border-radius:0.5rem; max-width:fit-content; padding:5px 10px;">
-                <input type="checkbox" name=validate[<%= user._id %>] value="declined" onChange="this.form.submit()"> Decline
-              </span>
+              <button style="margin-top: 0; border-radius: 15px;" class="btn btn-success btn-sm" type="submit" name=validate[<%= user._id %>] value="approved"><i class="fas fa-check-circle fa-2x"></i></button>
+              <button style="margin-top: 0; border-radius: 15px;" class="btn btn-danger btn-sm" type="submit" name=validate[<%= user._id %>] value="declined"><i class="fas fa-times-circle fa-2x"></i></button>
             </div>
           </div>
         <% }) %>

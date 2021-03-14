@@ -30,8 +30,7 @@
                           Raised by <%=user.firstName%> <%=user.lastName%> - <%=user.flatNumber%>
                         </p>
                         <p style="padding-left: 20px"><%= complaint.description %></p>
-                        <input type="checkbox" name=ticket[<%= user._id %>] value="<%= index %>" onChange="this.form.submit()" style="color: grey; margin-left: 20px;">
-                        <span style="color: grey;"> Close Ticket</span>
+                        <button type="submit" name=ticket[<%= user._id %>] value="<%= index %>" class="btn btn-success btn-sm" style="margin-top:0; margin-left:20px;">Close Ticket</button>
                         <% if(user.complaints[index+1]){ %>
                           <hr class="my-4">
                         <% } %>

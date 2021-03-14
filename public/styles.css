@@ -211,7 +211,7 @@ footer{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 8% 10%;
+    padding: 0 8% 15px;
 }
 .profile-text {
     border: black;
