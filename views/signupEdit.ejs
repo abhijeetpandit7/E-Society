@@ -25,7 +25,12 @@
               </div>
               <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Society Name :</b></div>
               <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">
-                <input name="societyName" type="tel" id="societyName" class="form-control" value="<%= user.societyName %>" required>
+                <input name="societyName" list="societyList" id="societyName" class="form-control"  value="<%= user.societyName %>" autocomplete="off" required>
+                <datalist id="societyList">
+                  <% societies.forEach(society => { %>
+                    <option value="<%= society.societyName %>">
+                  <% }) %>
+                </datalist>
               </div>
               <div class="col-sm-12 col-lg-12" style=" margin-top:4% "> <b> Flat Number :</b></div>
               <div class="col-sm-12 col-lg-12" style=" margin-top:6px ">

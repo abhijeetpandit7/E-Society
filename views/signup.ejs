@@ -22,7 +22,12 @@
                   <label for="inputPhoneNumber">Phone number</label>
                 </div>
                 <div class="form-label-group">
-                  <input name="societyName" type="text" id="inputSocietyName" class="form-control" placeholder="Society name " required >
+                  <input name="societyName" list="societyList" id="inputSocietyName" class="form-control" placeholder="Society name" autocomplete="off" required>
+                  <datalist id="societyList">
+                    <% societies.forEach(society => { %>
+                      <option value="<%= society.societyName %>">
+                    <% }) %>
+                  </datalist>
                   <label for="inputSocietyName">Society name</label>
                 </div>
                 <div class="form-label-group">

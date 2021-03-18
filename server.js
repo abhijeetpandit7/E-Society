@@ -51,7 +51,9 @@ app.get("/login", (req,res) => {
 });
 
 app.get("/signup", (req,res) => {
-	res.render("signup");
+	society_collection.Society.find((err,foundSociety) => {
+		res.render("signup", {societies: foundSociety});
+	})
 });
 
 app.get("/register", (req,res) => {
@@ -87,7 +89,9 @@ app.get("/home", (req,res) => {
 
 app.get("/newRequest", (req,res) => {
 	if(req.isAuthenticated() && req.user.validation!='approved'){
-		res.render("signupEdit", {user: req.user});
+		society_collection.Society.find((err,foundSociety) => {
+			res.render("signupEdit", {user: req.user, societies: foundSociety});
+		})
 	} else {
 		res.redirect("/home")
 	}
