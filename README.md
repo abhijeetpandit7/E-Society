@@ -2,14 +2,44 @@
 
 E-Society is a modular, API-Centric, and multi-tenant Community Management System. 
 It is capable of simplifying everyday living for your housing society. 
-Manage accounts, resolve complaints and keep the community up-to-date with all that’s going on in the society-to a single click.
+Manage accounts, due payments, resolve complaints and keep the community up-to-date with all that’s going on in the society-to a single click.
 Easy for the management committee and residents.
+
+### Deployed website link => [https://e-societyy.herokuapp.com/](https://e-societyy.herokuapp.com/)
 
 ## User types
 
-- General user - The member in the housing society. Can view community residents, noticeboard and monthly bills created by admin. And raise a ticket to the admin.
+- General user - The member in the housing society. Can view community residents, access noticeboard & maintenance bills, bill payments. And raise a ticket to the admin.
 - Administrator – The management committee of the community is known as the administrator. 
-  Holds various powers like registering new community, posting to noticeboard, updating monthly bills and access user complaints.
+  Holds various powers like registering new community, approving new residents into respective community, post to noticeboard, update maintenance bills, track payment dues and handle user complaints.
+
+## Admin Features:
+- Account Management  
+New member accounts created will be approved by the respective society administrator for activation. Resident will be joining the registered community only after admin approval.
+- Notices / Circulars  
+It gives admin the option to upload the notice, circulars and announcements on the digital noticeboard for easy access by the members 24x7 basis.
+- Bill Management  
+Admin can generate maintenance bills of the resident members instantaneously, enabling members to easily pay their dues online. Admin is provided with tracking feature of member dues 	payment.
+- Complaint Management  
+Admin can track to quick closure & provide feedback on raised tickets by society members.
+- Emergency Contacts  
+Admin can configure the emergency number list with numbers of local police station, ambulance or pharmacy; accessible to every member.
+- Profile Management  
+Provide flexibility to admin for managing and updating registered society details.
+
+## Member Features:
+- Member's Communication  
+Provide a platform to the members to connect with other members of the respective society.
+- Notices / Circulars  
+Digital noticeboard helps members to read each & every notice / circular society is publishing. Members can access all past / latest circulars, AGM notices which the society has published.
+- Online Payment  
+Check maintenance bill details. Members can download or view their monthly bills any time and from anywhere. While members can view the bill details online, they can instantaneously make the payment using Credit Card or Debit Card. After the successful payment the receipt of their payments are generated instantly and always available for download.
+- Complaint Management  
+Members can easily raise maintenance requests at personal or community level and track the status of their complaints.
+- Emergency Contacts  
+Always, be prepared for emergencies. It provides the emergency number list with numbers of local police station, ambulance or pharmacy; configured by society admin.
+- Profile Management  
+Provide flexibility to members for managing and updating registered member details.
 
 ## Specifications
 
