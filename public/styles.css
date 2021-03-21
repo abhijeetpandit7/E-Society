@@ -1,6 +1,7 @@
 body {
     background: #f4f9f9;
-    font-family: sans-serif, Helvetica, Arial
+    font-family: sans-serif, Helvetica, Arial;
+    background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
 }
 #navlist{
     margin-left: 5px;
