@@ -119,6 +119,10 @@ section{
 .w3-third {
     margin-top: 50px;
 }
+.advertisement {
+    display: flex;
+    justify-content: center;
+}
 
 @media only screen and (max-width: 600px) {
     .banner{
