@@ -1,0 +1,3 @@
+[build]
+  command = "node ./index.js"
+  publish = "public"
