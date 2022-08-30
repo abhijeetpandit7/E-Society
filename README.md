@@ -1,11 +1,11 @@
-# [E-Society](https://e-societyy.herokuapp.com/) - Community Management System
+# [E-Society](https://e-societyy.herokuapp.com) - Community Management System
 
 E-Society is a modular, API-Centric, and multi-tenant Community Management System. 
 It is capable of simplifying everyday living for your housing society. 
 Manage accounts, due payments, resolve complaints and keep the community up-to-date with all that’s going on in the society-to a single click.
 Easy for the management committee and residents.
 
-### Deployed website link => [https://e-societyy.herokuapp.com/](https://e-societyy.herokuapp.com/)
+### [Deployed website link](https://e-societyy.herokuapp.com)
 
 ## User types
 
@@ -56,12 +56,9 @@ Provide flexibility to members for managing and updating registered member detai
 At this point, you have all the necessary files to run the projet. You will still need to configure your MongoDB database in .env file.
 
 ## Contributions
-
-This project has been created during SDG-RAIT Winter Internship-2020-2021.  
-Development contributors: [Varad Khanvilkar](https://github.com/varad1508), [Sanket Mane](https://github.com/sanket-123-pixel), 
-[Yash Kitey](https://github.com/absty10), [Sudarshan Kankhar](https://github.com/Sid4100), [Tejashree Ghude](https://github.com/tejashree-ghude), 
-[Roshni Chauhan](https://github.com/Rosh9532), [Krushna Dahake](https://github.com/krish10k), [Gaurav](https://github.com/Gaurav-13)  
-Project mentor: Mr. Tushar Ghorpade
+<a href="https://github.com/abhijeetpandit7/e-society/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=abhijeetpandit7/e-society" />
+</a>
 
 <img src= 'https://user-images.githubusercontent.com/65078610/112977547-d114cd00-9173-11eb-9768-8dc29a38a98d.png' width="1200">
 <img src= 'https://user-images.githubusercontent.com/65078610/112977718-00c3d500-9174-11eb-8271-193384b88b5c.png' width="1200">
