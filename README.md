@@ -1,11 +1,11 @@
-# [E-Society](https://e-societyy.herokuapp.com) - Community Management System
+# [E-Society](https://esociety-fdbd.onrender.com) - Community Management System
 
 E-Society is a modular, API-Centric, and multi-tenant Community Management System. 
 It is capable of simplifying everyday living for your housing society. 
 Manage accounts, due payments, resolve complaints and keep the community up-to-date with all that’s going on in the society-to a single click.
 Easy for the management committee and residents.
 
-### [Deployed website link](https://e-societyy.herokuapp.com)
+### [Deployed website link](https://esociety-fdbd.onrender.com)
 
 ## User types
 
