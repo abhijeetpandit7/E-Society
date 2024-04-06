@@ -30,6 +30,11 @@ db.connectDB()
 app.get("/", (req,res) => {
 	// Track page visits + users & societies registered
 	visit_collection.Visit.findOne((err,pageVisit) => {
+		if(!pageVisit){
+			pageVisit = new visit_collection.Visit({
+				count: 0
+			})
+		}
 		pageVisit.count += 1;
 		society_collection.Society.find((err,foundSociety) => {
 			const societyCount = foundSociety.length
