@@ -18,7 +18,7 @@ const app = express()
 app.set('view engine','ejs');
 app.use(express.static('public'));
 // Middleware to handle HTTP post requests
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

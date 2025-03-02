@@ -1,8 +1,11 @@
 {
   "name": "e-society",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Community management app",
   "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development node server.js"
@@ -11,14 +14,13 @@
     "type": "git",
     "url": "git+https://github.com/abhijeetpandit7/E-Society.git"
   },
-  "author": "",
+  "author": "Abhijeet Pandit",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/abhijeetpandit7/E-Society/issues"
   },
   "homepage": "https://github.com/abhijeetpandit7/E-Society#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "connect-mongo": "^5.1.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
