@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const _ = require('lodash');
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
 const user_collection = require("./models/userModel");
 const society_collection = require("./models/societyModel");
 const visit_collection = require("./models/visitModel");
@@ -18,11 +19,23 @@ app.set('view engine','ejs');
 app.use(express.static('public'));
 // Middleware to handle HTTP post requests
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(session({
-	secret:"This is the secret key",
-	resave:false,
-	saveUninitialized:false
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      collectionName: "sessions",
+    }),
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 db.connectDB()
