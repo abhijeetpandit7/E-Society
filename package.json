@@ -4,7 +4,8 @@
   "description": "Community management app",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development node server.js"
   },
   "repository": {
     "type": "git",
