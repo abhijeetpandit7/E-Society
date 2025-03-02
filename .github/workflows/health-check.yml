@@ -1,0 +1,26 @@
+name: Health Check Monitoring
+
+on:
+  schedule:
+    # Regular health checks every 14 minutes
+    - cron: "*/14 * * * *"
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  health_monitoring:
+    name: Monitor Application Health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send health check request
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" -m 10 https://esociety-fdbd.onrender.com/health)
+          if [[ $response -ge 200 && $response -lt 300 ]]; then
+            echo "Health check successful with status code: $response"
+            exit 0
+          else
+            echo "Health check failed with status code: $response"
+            exit 1
+          fi
+
+      - name: Log health status
+        run: echo "Health check completed successfully at $(date)"

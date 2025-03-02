@@ -829,6 +829,10 @@ app.post("/login", passport.authenticate("local", {
 	failureRedirect: "/loginFailure"
 }));
 
+app.get("/health", (req, res) => {
+    res.status(200).send("Server is running");
+});
+
 app.listen(
     process.env.PORT || 3000, 
     console.log("Server started")
