@@ -23,9 +23,9 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "lodash": "^4.17.20",
-    "mongoose": "^5.11.17",
-    "passport": "^0.4.1",
-    "passport-local-mongoose": "^6.1.0",
+    "mongoose": "^8.11.0",
+    "passport": "^0.7.0",
+    "passport-local-mongoose": "^8.0.0",
     "stripe": "^8.137.0"
   }
 }
