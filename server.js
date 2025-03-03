@@ -50,7 +50,9 @@ app.get("/", async (req,res) => {
                 count: 0
             });
         }
-        pageVisit.count += 1;
+        if (process.env.NODE_ENV === 'production') {
+            pageVisit.count += 1;
+        }
         await pageVisit.save();
         
         const societies = await society_collection.Society.find();

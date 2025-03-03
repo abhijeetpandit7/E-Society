@@ -19,7 +19,17 @@
                 </div>
                 <button class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" style="font-size:15px;">Sign in</button>
                 <hr class="my-4">
-                <h6 class="card-text text-center">Don't have an account? </h6></b>
+                <div class="d-flex align-items-center justify-content-center mb-3">
+                  <h6 class="card-text mb-0">Don't have an account? </h6>
+                  <button id="quickLoginBtn"
+                    style="width: 32px; height: 32px; border-radius: 50%; background-color: #343a40; border: none; color: white; margin-left: 10px; display: flex; align-items: center; justify-content: center;"
+                    title="Quick demo access" onclick="quickDemoLogin()" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path
+                        d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5z" />
+                    </svg>
+                  </button>
+                </div>
                 <a href="/signup" class="btn  btn-danger btn-block text-uppercase" type="submit" style="font-size:15px;">sign-up</a>
                 <a href="/" class="btn  btn-secondary btn-block text-uppercase">Home</a>
               </form>
@@ -27,7 +37,14 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>  
+    <script>
+      function quickDemoLogin() {
+        document.getElementById('email').value = 'rajesh@saikrupa.com';
+        document.getElementById('inputPassword').value = 'demo';
+        document.querySelector('.form-signin').submit();
+      }
+    </script>
   </body>
 
 </html>
