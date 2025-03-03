@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Send health check request
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" -m 10 https://esociety-fdbd.onrender.com/health)
+          response=$(curl -s -o /dev/null -w "%{http_code}" -m 90 https://esociety-fdbd.onrender.com/health)
           if [[ $response -ge 200 && $response -lt 300 ]]; then
             echo "Health check successful with status code: $response"
             exit 0
