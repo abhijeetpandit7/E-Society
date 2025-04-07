@@ -2,8 +2,8 @@ name: Health Check Monitoring
 
 on:
   schedule:
-    # Regular health checks every 14 minutes
-    - cron: "*/14 * * * *"
+    # Regular health checks every 30 minutes
+    - cron: "*/30 * * * *"
   workflow_dispatch: # Allow manual triggering
 
 jobs:
